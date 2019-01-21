@@ -7,8 +7,6 @@ import com.example.fang.b16traveldomain.R;
 
 public class TicketDetailActivity extends AppCompatActivity {
     static private String TAG = TicketDetailActivity.class.getSimpleName();
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
