@@ -22,12 +22,16 @@ public class TicketInformation implements Serializable {
     String passengerage;
     String passengergender;
 
+    public TicketInformation() {
+    }
+
     public TicketInformation(String route_name, String busid, String fare, String coupondiscount, String servicetax, String journydate, String boardingtime, String droppingtime, String duration, String passengerid, String passengeremail, String passengermobile, String selectedseat, String passengername, String passengerage, String passengergender) {
         this.route_name = route_name;
         this.busid = busid;
         this.fare = fare;
         this.coupondiscount = coupondiscount;
         this.servicetax = servicetax;
+        //"25-11-2018-Wednesday"
         this.journydate = journydate;
         this.boardingtime = boardingtime;
         this.droppingtime = droppingtime;

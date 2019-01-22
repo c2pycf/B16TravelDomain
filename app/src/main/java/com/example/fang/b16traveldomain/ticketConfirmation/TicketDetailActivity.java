@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.example.fang.b16traveldomain.R;
 import com.example.fang.b16traveldomain.model.TicketInformation;
 
+import java.text.NumberFormat;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -73,15 +75,21 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
 
     private TicketDetailPresenter mPresenter;
 
+    NumberFormat format;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_detail);
         ButterKnife.bind(this);
+        //set up currency format;
+        format = NumberFormat.getCurrencyInstance();
+
 
         //get ticket information from previous activity
         if(getTicketInformation()!=null) {
             ticketInformation = getTicketInformation();
+            mockTicketInfor();
+            setUI();
         }
         else{
             showToast("No ticket information");
@@ -92,12 +100,42 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
 
     }
 
+    private void mockTicketInfor() {
+        ticketInformation.setFare("5000");
+        ticketInformation.setCoupondiscount(null);
+        ticketInformation.setBoardingtime("09:00 AM");
+        ticketInformation.setDroppingtime("08:10 PM");
+        ticketInformation.setDuration("11h10m");
+
+    }
+
+    private void setUI() {
+        //time UI data
+        tvDepDateCard.setText(ticketInformation.getBoardingtime());
+        tvArrDateCard.setText(ticketInformation.getDroppingtime());
+        tvDurationDateCard.setText(ticketInformation.getDuration());
+
+        //Fare UI date
+        tvBaseFare.setText(ticketInformation.getFare());
+        double appDiscount = 0.05;
+        double tax = 0.08;
+        double fareDouble = Double.parseDouble(ticketInformation.getFare());
+        String appDiscount_calculated = Double.toString(fareDouble * appDiscount);
+        String fare_taxed = Double.toString(fareDouble * tax);
+        tvAppDiscount.setText(appDiscount_calculated);
+        tvServiceTax.setText(fare_taxed);
+        String totalFare = Double.toString(fareDouble * (1+ tax - appDiscount));
+        ticketInformation.setFare(totalFare);
+        tvTotal.setText(totalFare);
+
+    }
+
     private TicketInformation getTicketInformation() {
         if(getIntent()!=null) {
             return (TicketInformation) getIntent().getSerializableExtra(TICKET_INFORMATION_TAG);
         }
         else{
-            return null;
+            return new TicketInformation();
         }
     }
 
@@ -116,6 +154,7 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
                     }
                     break;
                 case R.id.tv_save_reservation:
+                    mPresenter.saveReservation(ticketInformation);
                     break;
             }
         }
@@ -128,9 +167,14 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
 
     @Override
     public void showPaymentActivity(TicketInformation ticketInformation) {
-        //Start payment activity
-        Intent intent = new Intent();
-        intent.putExtra(TICKET_INFORMATION_TAG,ticketInformation);
-        startActivity(intent);
+        //Start payment activity after check checkbox
+        if(cbCredit.isChecked()) {
+            Intent intent = new Intent();
+            intent.putExtra(TICKET_INFORMATION_TAG, ticketInformation);
+            startActivity(intent);
+        }
+        else {
+            showToast("Please select your payment method");
+        }
     }
 }

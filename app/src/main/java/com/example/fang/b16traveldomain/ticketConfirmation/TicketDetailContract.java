@@ -15,6 +15,6 @@ public interface TicketDetailContract {
 
         void proceedToPayment(String couponRate);
 
-        void saveReservation();
+        void saveReservation(TicketInformation ticketInformation);
     }
 }
