@@ -10,7 +10,7 @@ public interface TicketDetailContract {
 
     }
 
-    interface TicketDetialPresenter{
+    interface TicketDetailPresenter {
         void checkCoupon(String coupon, TicketInformation ticketInformation);
 
         void proceedToPayment(String couponRate);

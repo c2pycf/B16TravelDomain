@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.fang.b16traveldomain.R;
 import com.example.fang.b16traveldomain.model.TicketInformation;

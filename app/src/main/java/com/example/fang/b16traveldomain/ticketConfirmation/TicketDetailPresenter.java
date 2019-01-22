@@ -1,7 +1,5 @@
 package com.example.fang.b16traveldomain.ticketConfirmation;
 
-import android.util.Log;
-
 import com.example.fang.b16traveldomain.model.Coupon;
 import com.example.fang.b16traveldomain.model.TicketInformation;
 import com.example.fang.b16traveldomain.network.GetDataService;
@@ -14,7 +12,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class TicketDetailPresenter implements TicketDetailContract.TicketDetialPresenter{
+public class TicketDetailPresenter implements TicketDetailContract.TicketDetailPresenter {
 
     private TicketDetailContract.TicketDetailView mView;
     private Retrofit mRetrofit;
