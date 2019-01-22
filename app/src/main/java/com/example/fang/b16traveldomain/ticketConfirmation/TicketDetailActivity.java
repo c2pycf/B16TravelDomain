@@ -117,15 +117,15 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
         tvDurationDateCard.setText(ticketInformation.getDuration());
 
         //Fare UI date
-        tvBaseFare.setText(ticketInformation.getFare());
+        tvBaseFare.setText(format.format(Double.parseDouble(ticketInformation.getFare())));
         double appDiscount = 0.05;
         double tax = 0.08;
         double fareDouble = Double.parseDouble(ticketInformation.getFare());
-        String appDiscount_calculated = Double.toString(fareDouble * appDiscount);
-        String fare_taxed = Double.toString(fareDouble * tax);
+        String appDiscount_calculated = format.format(fareDouble * appDiscount);
+        String fare_taxed = format.format(fareDouble * tax);
         tvAppDiscount.setText(appDiscount_calculated);
         tvServiceTax.setText(fare_taxed);
-        String totalFare = Double.toString(fareDouble * (1+ tax - appDiscount));
+        String totalFare = format.format(fareDouble * (1+ tax - appDiscount));
         ticketInformation.setFare(totalFare);
         tvTotal.setText(totalFare);
 
@@ -171,6 +171,7 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
     public void showPaymentActivity(TicketInformation ticketInformation) {
         //Start payment activity after check checkbox
         if(cbCredit.isChecked()) {
+            //new activity
             Intent intent = new Intent();
             intent.putExtra(TICKET_INFORMATION_TAG, ticketInformation);
             startActivity(intent);
