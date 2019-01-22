@@ -7,6 +7,21 @@
     tools:context=".ticketConfirmation.TicketDetailActivity"
     android:orientation="vertical">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ticket_detail_toolbar">
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+
+
     <include layout="@layout/item_date_card" />
 
     <TextView
@@ -24,13 +39,15 @@
         android:layout_height="wrap_content"
         android:text="@string/coupon_checkbox"
         android:layout_margin="5dp"
-        android:padding="5dp"/>
+        android:padding="5dp"
+        android:id="@+id/cb_coupon"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="5dp"
         android:padding="5dp"
-        android:hint="@string/coupon_hint"/>
+        android:hint="@string/coupon_hint"
+        android:id="@+id/et_coupon"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +61,8 @@
         android:layout_height="wrap_content"
         android:text="@string/payment_method_credit"
         android:layout_margin="5dp"
-        android:padding="5dp"/>
+        android:padding="5dp"
+        android:id="@+id/cb_credit"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,9 +81,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/save_reservation_infor"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:id="@+id/tv_save_reservation"/>
 
     </LinearLayout>
+
+
 
 
 
