@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -84,23 +85,24 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
         //set up currency format;
         format = NumberFormat.getCurrencyInstance();
 
-
+        mPresenter = new TicketDetailPresenter(this);
         //get ticket information from previous activity
         if(getTicketInformation()!=null) {
             ticketInformation = getTicketInformation();
-            mockTicketInfor();
+            //mockTicketInfor();
             setUI();
         }
         else{
-            showToast("No ticket information");
+            mockTicketInfor();
+            setUI();
+            //showToast("No ticket information");
         }
-
-
-
 
     }
 
+
     private void mockTicketInfor() {
+        ticketInformation = new TicketInformation();
         ticketInformation.setFare("5000");
         ticketInformation.setCoupondiscount(null);
         ticketInformation.setBoardingtime("09:00 AM");
@@ -135,13 +137,14 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
             return (TicketInformation) getIntent().getSerializableExtra(TICKET_INFORMATION_TAG);
         }
         else{
-            return new TicketInformation();
+            return null;
         }
     }
 
     @OnClick({R.id.bt_proceed_for_payment, R.id.tv_save_reservation})
     public void onViewClicked(View view) {
-        if(getTicketInformation()!=null) {
+       //if(getTicketInformation()!=null) {
+            Log.d(TAG,"Button clicked");
             switch (view.getId()) {
                 case R.id.bt_proceed_for_payment:
                     if (cbCoupon.isChecked()) {
@@ -158,7 +161,7 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
                     break;
             }
         }
-    }
+    //}
 
     @Override
     public void showToast(String msg) {
