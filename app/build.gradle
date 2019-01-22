@@ -37,4 +37,7 @@ dependencies {
     //ButterKnife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    //Stripe
+    implementation 'com.stripe:stripe-android:6.1.2'
 }
