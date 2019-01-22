@@ -58,16 +58,19 @@ public class TicketDetailPresenter implements TicketDetailContract.TicketDetialP
 
     @Override
     public void proceedToPayment(String couponRate) {
-        float fare = Float.parseFloat(mTicketInformation.getFare());
-        float rate = Float.parseFloat(couponRate);
-        float newFareFloat = fare*(100-rate)/100;
-        String newFare = Float.toString(newFareFloat);
-        mTicketInformation.setFare(newFare);
+//        float fare = Float.parseFloat(mTicketInformation.getFare());
+//        float rate = Float.parseFloat(couponRate);
+//        float newFareFloat = fare*(100-rate)/100;
+//        String newFare = Float.toString(newFareFloat);
+//        mTicketInformation.setFare(newFare);
+        mTicketInformation.setCoupondiscount(couponRate);
         mView.showPaymentActivity(mTicketInformation);
     }
 
     @Override
-    public void saveReservation() {
+    public void saveReservation(TicketInformation ticketInformation) {
         //save ticket information
+        mTicketInformation = ticketInformation;
+
     }
 }
