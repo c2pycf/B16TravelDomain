@@ -34,7 +34,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:padding="3sp"
-            android:text="Wensday"
+            android:text="Wednesday"
             android:textSize="15sp"
             app:layout_constraintStart_toEndOf="@+id/tv_date_date_card"
             app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +42,7 @@
         <TextView
             android:id="@+id/tv_month_date_card"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="23dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
@@ -51,15 +51,15 @@
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_date_date_card"
-            app:layout_constraintTop_toBottomOf="@+id/tv_week_date_card"
-            app:layout_constraintVertical_bias="0.052" />
+            app:layout_constraintTop_toBottomOf="@id/tv_week_date_card"
+            app:layout_constraintVertical_bias="0.117" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
             android:padding="3sp"
             android:text="@string/tx_dep_time"
             android:textSize="15sp"
@@ -70,7 +70,7 @@
             android:id="@+id/tv_dep_date_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
             android:padding="3sp"
             android:text="09:00 PM"
@@ -96,13 +96,12 @@
             android:id="@+id/tv_arr_date_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="5dp"
             android:padding="3sp"
             android:text="09:00 PM"
             android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/tv_dep_date_card" />
 
@@ -111,6 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
             android:padding="3sp"
             android:text="@string/tx_duration"
             android:textSize="15sp"
@@ -121,6 +121,9 @@
             android:id="@+id/tv_duration_date_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:padding="3sp"
             android:text="8h 30m"

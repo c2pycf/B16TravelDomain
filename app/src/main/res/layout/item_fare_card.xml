@@ -33,7 +33,7 @@
             android:padding="3dp"
             android:text="@string/app_discount"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tx_base_fare" />
+            app:layout_constraintTop_toBottomOf="@id/tv_base_fare" />
 
         <TextView
             android:id="@+id/tx_service_tax"
