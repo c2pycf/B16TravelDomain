@@ -1,9 +1,9 @@
-package com.example.fang.b16traveldomain.model.dataResource;
+package com.example.fang.b16traveldomain.model.dataresource;
 
 import android.content.Context;
 
-import com.example.fang.b16traveldomain.model.dataResource.localDataResource.LocalUserResource;
-import com.example.fang.b16traveldomain.model.dataResource.localDataResource.SharedPreference;
+import com.example.fang.b16traveldomain.model.dataresource.localdataresource.LocalUserResource;
+import com.example.fang.b16traveldomain.model.dataresource.localdataresource.SharedPreference;
 
 public class UserDataSource implements UserRepository{
     LocalUserResource mLocalUserResource;

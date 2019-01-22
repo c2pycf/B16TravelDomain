@@ -36,7 +36,6 @@ public class TicketDetailPresenter implements TicketDetailContract.TicketDetialP
         call.enqueue(new Callback<List<Coupon>>() {
             @Override
             public void onResponse(Call<List<Coupon>> call, Response<List<Coupon>> response) {
-                Log.d(TAG,response.toString());
                 List<Coupon> coupons= response.body();
                 if(coupons !=null) {
                     String couponRate = coupons.get(0).getDiscount();

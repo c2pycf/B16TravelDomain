@@ -1,4 +1,4 @@
-package com.example.fang.b16traveldomain.model.dataResource;
+package com.example.fang.b16traveldomain.model.dataresource;
 
 public interface UserRepository {
     void saveUser();

@@ -1,4 +1,4 @@
-package com.example.fang.b16traveldomain.model.dataResource.localDataResource;
+package com.example.fang.b16traveldomain.model.dataresource.localdataresource;
 
 public interface LocalUserResource {
     void saveUser();
