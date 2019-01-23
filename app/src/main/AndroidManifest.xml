@@ -24,6 +24,7 @@
         </activity>
         <activity android:name=".paymentgateway.PaymentActivity">
         </activity>
+        <activity android:name=".bussearch.BusSearchActivity"></activity>
     </application>
 
 </manifest>
