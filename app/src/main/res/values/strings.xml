@@ -14,4 +14,11 @@
     <string name="payment_method_credit">Credit/debit Card</string>
     <string name="proceed_to_payment">Proceed for Payment</string>
     <string name="save_reservation_infor"><u>Save this reservation for later?</u></string>
+    <string name="billing_address">Billing address</string>
+    <string name="billing_address_1">Address</string>
+    <string name="billing_address_2">Address (Optional)</string>
+    <string name="hint_billing_city">City</string>
+    <string name="hint_billing_state">State</string>
+    <string name="hint_billing_zip">Zip code</string>
+    <string name="bt_billing_check_out">Check out</string>
 </resources>

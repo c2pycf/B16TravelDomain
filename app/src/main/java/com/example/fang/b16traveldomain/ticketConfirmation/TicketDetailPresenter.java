@@ -37,7 +37,7 @@ public class TicketDetailPresenter implements TicketDetailContract.TicketDetailP
                 List<Coupon> coupons= response.body();
                 if(coupons !=null) {
                     String couponRate = coupons.get(0).getDiscount();
-                    proceedToPayment(couponRate);
+                    proceedToPayment(couponRate,mTicketInformation);
                 }
                 else {
                     mView.showToast("Coupon invalid");
@@ -54,12 +54,13 @@ public class TicketDetailPresenter implements TicketDetailContract.TicketDetailP
     }
 
     @Override
-    public void proceedToPayment(String couponRate) {
+    public void proceedToPayment(String couponRate, TicketInformation ticketInformation) {
 //        float fare = Float.parseFloat(mTicketInformation.getFare());
 //        float rate = Float.parseFloat(couponRate);
 //        float newFareFloat = fare*(100-rate)/100;
 //        String newFare = Float.toString(newFareFloat);
 //        mTicketInformation.setFare(newFare);
+        mTicketInformation = ticketInformation;
         mTicketInformation.setCoupondiscount(couponRate);
         mView.showPaymentActivity(mTicketInformation);
     }
