@@ -1,11 +1,10 @@
 package com.example.fang.b16traveldomain.ticketConfirmation;
 
-import com.example.fang.b16traveldomain.model.TicketInformation;
-
 public interface TicketDetailContract {
+<<<<<<< Updated upstream
+=======
     interface TicketDetailView{
         void showToast(String msg);
-
         void showPaymentActivity(TicketInformation ticketInformation);
 
     }
@@ -17,4 +16,5 @@ public interface TicketDetailContract {
 
         void saveReservation(TicketInformation ticketInformation);
     }
+>>>>>>> Stashed changes
 }
