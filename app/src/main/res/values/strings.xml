@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">B16TravelDomain</string>
+    <string name="tx_dep_time">Dep time:</string>
+    <string name="tx_arr_time">Arr time:</string>
+    <string name="tx_duration">Duration</string>
+    <string name="base_fare">Base Fare</string>
+    <string name="app_discount">App Discount</string>
+    <string name="service_tax">Service Tax</string>
+    <string name="total_fare">Total Fare</string>
+    <string name="payment_detail">Payment Detail</string>
+    <string name="coupon_checkbox">Have a coupon?</string>
+    <string name="coupon_hint">Enter your coupon code</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="payment_method_credit">Credit/debit Card</string>
+    <string name="proceed_to_payment">Proceed for Payment</string>
+    <string name="save_reservation_infor"><u>Save this reservation for later?</u></string>
 </resources>

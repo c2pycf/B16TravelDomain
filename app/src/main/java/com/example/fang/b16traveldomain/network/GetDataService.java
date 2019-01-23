@@ -1,8 +1,7 @@
 package com.example.fang.b16traveldomain.network;
 
-<<<<<<< Updated upstream
+
 public interface GetDataService {
-=======
 import com.example.fang.b16traveldomain.model.Coupon;
 import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
 import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformationResponse;
@@ -21,5 +20,5 @@ public interface GetDataService {
     //bus search service by route id
     @GET("businfo.php?")
     Call<BusInformationResponse> getBuses(@Query("routeid") String routeid);
->>>>>>> Stashed changes
+
 }
