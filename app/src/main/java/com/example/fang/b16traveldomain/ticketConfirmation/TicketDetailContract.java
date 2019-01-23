@@ -6,6 +6,7 @@ public interface TicketDetailContract {
     interface TicketDetailView{
         void showToast(String msg);
 
+
         void showPaymentActivity(TicketInformation ticketInformation);
 
     }
@@ -13,7 +14,7 @@ public interface TicketDetailContract {
     interface TicketDetailPresenter {
         void checkCoupon(String coupon, TicketInformation ticketInformation);
 
-        void proceedToPayment(String couponRate);
+        void proceedToPayment(String couponRate, TicketInformation ticketInformation);
 
         void saveReservation(TicketInformation ticketInformation);
     }

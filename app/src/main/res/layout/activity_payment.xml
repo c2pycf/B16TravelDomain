@@ -1,28 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".paymentgateway.PaymentActivity">
+    tools:context=".paymentgateway.PaymentActivity"
+   android:orientation="vertical">
 
     <com.stripe.android.view.CardMultilineWidget
+        android:id="@+id/card_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="192dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/card_input">
-        <com.stripe.android.view.CardNumberEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"/>
-        <com.stripe.android.view.ExpiryDateEditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-
-
+        app:shouldShowPostalCode="false"
+        android:layout_marginTop="100dp"
+        >
 
 
     </com.stripe.android.view.CardMultilineWidget>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/billing_address"
+       android:layout_margin="5dp"
+        android:padding="5dp"
+        android:textColor="@color/colorPrimary"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/billing_address_1"
+        android:id="@+id/et_billing_address_1"
+        android:inputType="textPostalAddress"
+        android:layout_margin="5dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/billing_address_2"
+        android:id="@+id/et_billing_address_2"
+        android:inputType="textPostalAddress"
+        android:layout_margin="5dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="5dp">
+        <EditText
+            android:layout_margin="5dp"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:hint="@string/hint_billing_city"/>
+        <EditText
+            android:layout_margin="5dp"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:hint="@string/hint_billing_state"/>
+        <EditText
+            android:layout_margin="5dp"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:hint="@string/hint_billing_zip"
+            android:maxLength="5" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_check_out"
+        android:text="@string/bt_billing_check_out"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
