@@ -1,4 +1,4 @@
-package com.example.fang.b16traveldomain.ticketConfirmation;
+package com.example.fang.b16traveldomain.ticketconfirmation;
 
 import com.example.fang.b16traveldomain.model.TicketInformation;
 
