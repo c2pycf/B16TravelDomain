@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.fang.b16traveldomain.R;
 import com.example.fang.b16traveldomain.model.TicketInformation;
+import com.example.fang.b16traveldomain.paymentgateway.PaymentActivity;
 
 import java.text.NumberFormat;
 
@@ -154,6 +155,9 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
                             this.showToast("Empty coupon!");
                         }
                     }
+                    else {
+                        mPresenter.proceedToPayment("0",ticketInformation);
+                    }
                     break;
                 case R.id.tv_save_reservation:
                     mPresenter.saveReservation(ticketInformation);
@@ -172,7 +176,7 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
         //Start payment activity after check checkbox
         if(cbCredit.isChecked()) {
             //new activity
-            Intent intent = new Intent();
+            Intent intent = new Intent(TicketDetailActivity.this,PaymentActivity.class);
             intent.putExtra(TICKET_INFORMATION_TAG, ticketInformation);
             startActivity(intent);
         }
