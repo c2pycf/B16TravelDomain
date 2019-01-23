@@ -48,7 +48,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentContrac
     private void getTicketInfor() {
         if(getIntent().getSerializableExtra(TICKET_INFORMATION_TAG)!=null) {
             ticketInformation = (TicketInformation) getIntent().getSerializableExtra(TICKET_INFORMATION_TAG);
-            Log.d(TAG,ticketInformation.getBusid());
+            Log.d(TAG,ticketInformation.getDuration());
         }
     }
 
