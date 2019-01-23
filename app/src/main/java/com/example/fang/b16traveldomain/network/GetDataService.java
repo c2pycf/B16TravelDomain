@@ -1,7 +1,12 @@
 package com.example.fang.b16traveldomain.network;
 
+
+public interface GetDataService {
 import com.example.fang.b16traveldomain.model.Coupon;
 import com.example.fang.b16traveldomain.model.TicketInformation;
+import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
+import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformationResponse;
+
 
 import java.util.List;
 
@@ -18,4 +23,10 @@ public interface GetDataService {
     //response for api 10
     @GET("ticketcheckoutinfo.php?")
     Call<List<String>> getOrderResult(@QueryMap TicketInformation ticketInformation);
+
+    //bus search service by route id
+    @GET("businfo.php?")
+    Call<BusInformationResponse> getBuses(@Query("routeid") String routeid);
+
+
 }

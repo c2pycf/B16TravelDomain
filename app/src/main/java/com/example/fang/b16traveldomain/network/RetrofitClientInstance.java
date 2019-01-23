@@ -5,8 +5,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClientInstance {
     private static Retrofit mRetrofit;
-
     private static final String BASE_URL = "http://rjtmobile.com/aamir/otr/android-app/";
+
 
     public static Retrofit getInstance(){
         if(mRetrofit == null){
