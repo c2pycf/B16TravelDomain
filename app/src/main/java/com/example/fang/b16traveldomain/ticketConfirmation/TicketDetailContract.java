@@ -6,6 +6,7 @@ public interface TicketDetailContract {
     interface TicketDetailView{
         void showToast(String msg);
 
+
         void showPaymentActivity(TicketInformation ticketInformation);
 
     }
