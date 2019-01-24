@@ -1,4 +1,4 @@
-package com.example.fang.b16traveldomain.ticketConfirmation;
+package com.example.fang.b16traveldomain.ticketconfirmation;
 
 import android.content.Intent;
 import android.os.Bundle;

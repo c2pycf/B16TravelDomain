@@ -3,6 +3,8 @@ package com.example.fang.b16traveldomain.model;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TicketInformation implements Serializable {
     String route_name;
@@ -17,15 +19,13 @@ public class TicketInformation implements Serializable {
     String passengerid;
     String passengeremail;
     String passengermobile;
-    String selectedseat;
-    String passengername;
-    String passengerage;
-    String passengergender;
+    List<Passenger> passengers;
 
     public TicketInformation() {
+        List<Passenger> passengers = new ArrayList<>();
     }
 
-    public TicketInformation(String route_name, String busid, String fare, String coupondiscount, String servicetax, String journydate, String boardingtime, String droppingtime, String duration, String passengerid, String passengeremail, String passengermobile, String selectedseat, String passengername, String passengerage, String passengergender) {
+    public TicketInformation(String route_name, String busid, String fare, String coupondiscount, String servicetax, String journydate, String boardingtime, String droppingtime, String duration, String passengerid, String passengeremail, String passengermobile) {
         this.route_name = route_name;
         this.busid = busid;
         this.fare = fare;
@@ -39,10 +39,7 @@ public class TicketInformation implements Serializable {
         this.passengerid = passengerid;
         this.passengeremail = passengeremail;
         this.passengermobile = passengermobile;
-        this.selectedseat = selectedseat;
-        this.passengername = passengername;
-        this.passengerage = passengerage;
-        this.passengergender = passengergender;
+        List<Passenger> passengers = new ArrayList<>();
     }
 
     public String getRoute_name() {
@@ -141,36 +138,20 @@ public class TicketInformation implements Serializable {
         this.passengermobile = passengermobile;
     }
 
-    public String getSelectedseat() {
-        return selectedseat;
+    public void addPassanger(Passenger passenger){
+        passengers.add(passenger);
     }
 
-    public void setSelectedseat(String selectedseat) {
-        this.selectedseat = selectedseat;
+    public Passenger getPassanger(int i){
+        return passengers.get(i);
     }
 
-    public String getPassengername() {
-        return passengername;
+    public List<Passenger> getPassengers(){
+        return passengers;
     }
 
-    public void setPassengername(String passengername) {
-        this.passengername = passengername;
-    }
-
-    public String getPassengerage() {
-        return passengerage;
-    }
-
-    public void setPassengerage(String passengerage) {
-        this.passengerage = passengerage;
-    }
-
-    public String getPassengergender() {
-        return passengergender;
-    }
-
-    public void setPassengergender(String passengergender) {
-        this.passengergender = passengergender;
+    public int getPassangerSize(){
+        return passengers.size();
     }
 
     @NonNull
