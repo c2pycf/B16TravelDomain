@@ -68,4 +68,9 @@ public class PaymentPresenter implements PaymentContract.PaymentPresenter{
 //            }
 //        });
     }
+
+    @Override
+    public void reserveSeats(TicketInformation ticketInformation) {
+
+    }
 }

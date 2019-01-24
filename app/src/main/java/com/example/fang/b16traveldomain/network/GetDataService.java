@@ -28,4 +28,5 @@ public interface GetDataService {
     Call<BusInformationResponse> getBuses(@Query("routeid") String routeid);
 
 
+
 }
