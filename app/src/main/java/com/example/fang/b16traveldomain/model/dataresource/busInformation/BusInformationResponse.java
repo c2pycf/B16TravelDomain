@@ -1,4 +1,4 @@
-package com.example.fang.b16traveldomain.model.dataresource.busInformation;
+package com.example.fang.b16traveldomain.model.dataResource.busInformation;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -6,14 +6,16 @@ import java.util.List;
 
 public class BusInformationResponse {
 
-    @SerializedName("busInformationList")
+    @SerializedName("businformation")
    private List<BusInformation> busInformationList;
 
     public BusInformationResponse(List<BusInformation> busInformationList) {
+        super();
         this.busInformationList = busInformationList;
     }
 
-    public List<BusInformation> getBusInformationList() {
+    public List<BusInformation> getBusInformationList()
+    {
         return busInformationList;
     }
 

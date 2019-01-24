@@ -1,17 +1,19 @@
-package com.example.fang.b16traveldomain.busSearch;
+package com.example.fang.b16traveldomain.bussearch;
 
-import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformationResponse;
+import com.example.fang.b16traveldomain.model.dataResource.busInformation.BusInformationResponse;
 
-public class BusSearchContract {
+public interface BusSearchContract {
 
      interface BusSearchView{
-          void showToast(String s);
-          void searchBusActivity(BusInformationResponse busInformationResponse);
-          void displayError(String s);
+          void setupBusSearchMVP();  //setup presenter
+          void showToast(String s);  //show response message
+          void showBusSearchActivity(BusInformationResponse busInformationResponse); //display bus search
+          void displayError(String s);  //show error
+          void setupViews();       // setup layout
+
      }
 
      interface BusSearchPresenter{
-         void searchBus();
-
+         void searchBus(String id);
      }
 }
