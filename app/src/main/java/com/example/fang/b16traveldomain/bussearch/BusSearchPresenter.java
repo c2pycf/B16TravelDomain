@@ -2,13 +2,10 @@ package com.example.fang.b16traveldomain.bussearch;
 
 import android.util.Log;
 
-import com.example.fang.b16traveldomain.bussearch.BusSearchContract;
-import com.example.fang.b16traveldomain.model.dataResource.busInformation.BusInformation;
-import com.example.fang.b16traveldomain.model.dataResource.busInformation.BusInformationResponse;
+import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
+import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformationResponse;
 import com.example.fang.b16traveldomain.network.GetDataService;
 import com.example.fang.b16traveldomain.network.RetrofitClientInstance;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

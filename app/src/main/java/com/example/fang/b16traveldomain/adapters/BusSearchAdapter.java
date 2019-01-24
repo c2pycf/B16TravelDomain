@@ -8,7 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.fang.b16traveldomain.R;
-import com.example.fang.b16traveldomain.model.dataResource.busInformation.BusInformation;
+import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
+
 
 import java.util.List;
 

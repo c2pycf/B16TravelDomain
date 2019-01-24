@@ -1,6 +1,6 @@
 package com.example.fang.b16traveldomain.bussearch;
 
-import com.example.fang.b16traveldomain.model.dataResource.busInformation.BusInformationResponse;
+import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformationResponse;
 
 public interface BusSearchContract {
 

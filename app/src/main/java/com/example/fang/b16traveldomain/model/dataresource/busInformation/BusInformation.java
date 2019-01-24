@@ -1,4 +1,4 @@
-package com.example.fang.b16traveldomain.model.dataResource.busInformation;
+package com.example.fang.b16traveldomain.model.dataresource.busInformation;
 
 import com.google.gson.annotations.SerializedName;
 /*
@@ -23,6 +23,7 @@ public class BusInformation {
     String journeyDuration;
 
     @SerializedName("Fare")
+
     String fare;
 
     @SerializedName("boardingtime")
@@ -35,7 +36,9 @@ public class BusInformation {
     all args constructor
      */
     public BusInformation(String busId, String busRegistrationNo, String busType,
+
                           String busDepartureTime, String journeyDuration, String fare,
+
                           String boardingTime, String dropingTime) {
         this.busId = busId;
         this.busRegistrationNo = busRegistrationNo;
@@ -57,6 +60,7 @@ public class BusInformation {
     /*
     Getters and Setters for all fields
      */
+
 
     public String getBusId() {
         return busId;

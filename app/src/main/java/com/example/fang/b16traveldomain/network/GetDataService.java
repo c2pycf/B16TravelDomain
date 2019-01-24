@@ -2,9 +2,8 @@ package com.example.fang.b16traveldomain.network;
 
 import com.example.fang.b16traveldomain.model.Coupon;
 import com.example.fang.b16traveldomain.model.TicketInformation;
-import com.example.fang.b16traveldomain.model.dataResource.busInformation.BusInformationResponse;
-import com.example.fang.b16traveldomain.model.dataResource.busInformation.BusInformation;
-import com.example.fang.b16traveldomain.model.dataResource.busInformation.BusInformationResponse;
+import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformationResponse;
+import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
 
 
 import java.util.List;
