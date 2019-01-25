@@ -13,10 +13,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.fang.b16traveldomain.R;
+import com.example.fang.b16traveldomain.model.Passenger;
 import com.example.fang.b16traveldomain.model.TicketInformation;
 import com.example.fang.b16traveldomain.paymentgateway.PaymentActivity;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -108,6 +111,10 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
         ticketInformation.setBoardingtime("09:00 AM");
         ticketInformation.setDroppingtime("08:10 PM");
         ticketInformation.setDuration("11h10m");
+        Passenger passenger1 = new Passenger("1","fang","20","m");
+        List<Passenger> passengers = new ArrayList<>();
+        passengers.add(passenger1);
+        ticketInformation.setPassengers(passengers);
 
     }
 

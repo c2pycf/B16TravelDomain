@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.example.fang.b16traveldomain.model.TicketInformation;
 
+import java.text.Format;
+import java.text.NumberFormat;
 import java.util.List;
 
 import butterknife.BindView;
@@ -36,7 +38,12 @@ public class SavedReservationAdapter extends RecyclerView.Adapter {
         viewHolder1.tvStartTime.setText(ticketInformation.getBoardingtime());
         viewHolder1.tvEndTime.setText(ticketInformation.getDroppingtime());
         viewHolder1.tvSaveAt.setText(ticketInformation.getOrder_time());
-//        viewHolder1.tvPassengerNo.setText(ticketInformation.getPassangerSize());
+        NumberFormat format = NumberFormat.getIntegerInstance();
+        viewHolder1.tvPassengerNo.setText(format.format(ticketInformation.getPassangerSize()));
+    }
+
+    public TicketInformation getTicketPosition(int position){
+        return ticketInformations.get(position);
     }
 
     @Override

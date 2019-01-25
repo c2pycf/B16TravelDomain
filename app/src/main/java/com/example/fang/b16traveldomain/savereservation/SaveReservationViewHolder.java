@@ -29,6 +29,10 @@ public class SaveReservationViewHolder extends AndroidViewModel {
         ticketInforDataResource.saveTicketInfor(ticketInformation);
     }
 
+    void delete(TicketInformation ticketInformation){
+        ticketInforDataResource.deleteTicketInfor(ticketInformation);
+    }
+
     List<Passenger> getPassengers(String time) throws ExecutionException, InterruptedException {
         return ticketInforDataResource.getPassengers(time);
     }

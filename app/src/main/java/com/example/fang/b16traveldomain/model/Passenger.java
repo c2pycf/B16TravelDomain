@@ -3,6 +3,7 @@ package com.example.fang.b16traveldomain.model;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -13,7 +14,7 @@ import java.io.Serializable;
 @Entity(foreignKeys = @ForeignKey(entity = TicketInformation.class,
         parentColumns = "order_time",
         childColumns = "porder_time",
-        onDelete = CASCADE))
+        onDelete = CASCADE),indices = {@Index("porder_time")})
 public class Passenger implements Serializable {
     @PrimaryKey(autoGenerate = true)
     @NonNull
