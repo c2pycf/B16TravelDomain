@@ -23,7 +23,8 @@ public class BusInformation {
     String journeyDuration;
 
     @SerializedName("Fare")
-    int fare;
+
+    String fare;
 
     @SerializedName("boardingtime")
     String boardingTime;
@@ -35,7 +36,9 @@ public class BusInformation {
     all args constructor
      */
     public BusInformation(String busId, String busRegistrationNo, String busType,
-                          String busDepartureTime, String journeyDuration, int fare,
+
+                          String busDepartureTime, String journeyDuration, String fare,
+
                           String boardingTime, String dropingTime) {
         this.busId = busId;
         this.busRegistrationNo = busRegistrationNo;
@@ -57,6 +60,7 @@ public class BusInformation {
     /*
     Getters and Setters for all fields
      */
+
 
     public String getBusId() {
         return busId;
@@ -98,11 +102,11 @@ public class BusInformation {
         this.journeyDuration = journeyDuration;
     }
 
-    public int getFare() {
+    public String getFare() {
         return fare;
     }
 
-    public void setFare(int fare) {
+    public void setFare(String fare) {
         this.fare = fare;
     }
 

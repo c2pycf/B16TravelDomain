@@ -1,11 +1,10 @@
 package com.example.fang.b16traveldomain.network;
 
-
-public interface GetDataService {
 import com.example.fang.b16traveldomain.model.Coupon;
 import com.example.fang.b16traveldomain.model.TicketInformation;
-import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
 import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformationResponse;
+import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
+
 
 
 import java.util.List;

@@ -43,10 +43,13 @@ public class TicketDetailPresenter implements TicketDetailContract.TicketDetailP
                     mView.showToast("Coupon invalid");
                 }
 
+
+
             }
 
             @Override
             public void onFailure(Call<List<Coupon>> call, Throwable t) {
+                //@amani- could not build project because of onFailure missing
 
             }
         });
