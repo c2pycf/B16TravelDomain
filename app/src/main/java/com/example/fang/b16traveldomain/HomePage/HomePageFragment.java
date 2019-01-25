@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -15,6 +16,7 @@ import android.widget.Spinner;
 import com.example.fang.b16traveldomain.R;
 import com.example.fang.b16traveldomain.network.RetrofitClientInstance;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -23,15 +25,26 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class HomePageFragment extends Fragment {
+import static android.support.constraint.Constraints.TAG;
+
+public class HomePageFragment extends Fragment implements  HomePageContract.HomeFragmentView{
 
     Spinner start_city_spinner, destination_city_spinner;
     EditText et_date;
     Button btn_search;
     String TAG = "HomeFragment";
 
-    RetrofitClientInstance retrofitClientInstance;
+
     String BASE_URL = "http://rjtmobile.com/aamir/otr/android-app/";
+
+    String Date;
+
+    HomePagePresenter homePagePresenter;
+
+    String start_city , destination_city;
+
+
+
 
 
     @Override
@@ -51,27 +64,33 @@ public class HomePageFragment extends Fragment {
         et_date = view.findViewById(R.id.et_date_home);
         btn_search = view.findViewById(R.id.btn_search_home);
 
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        Api api = retrofit.create(Api.class);
+        Date = et_date.getText().toString();
 
 
-        Call<cityModelList> call = api.getCity();
+
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(BASE_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
 
 
-        call.enqueue(new Callback<cityModelList>() {
+        homePagePresenter = new HomePagePresenter(this);
+
+        homePagePresenter.getCity();
+
+
+
+
+        ////////// 2nd part on search button click
+
+        btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<cityModelList> call, Response<cityModelList> response) {
-                Log.e(TAG, "onResponse: "+response.body().getCityModelList().get(0).getCityname() );
-            }
+            public void onClick(View v) {
 
-            @Override
-            public void onFailure(Call<cityModelList> call, Throwable t) {
-                Log.e(TAG, "onFailure:" + t.getMessage());
+                start_city = String.valueOf(start_city_spinner.getSelectedItem());
+
+
+
             }
         });
 
@@ -83,5 +102,33 @@ public class HomePageFragment extends Fragment {
 
 
         return view;
+    }
+
+    @Override
+    public void HomePageView() {
+
+    }
+
+    @Override
+    public void setCityList(List<CityModel> cityList) {
+        List<String> cityList_String = new ArrayList<>();
+        for(int i =0 ; i <cityList.size();i++){
+            cityList_String.add(cityList.get(i).getCityname());
+        }
+
+        //adapter
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>
+                (getContext(),android.R.layout.simple_spinner_item , cityList_String);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        start_city_spinner.setAdapter(dataAdapter);
+        destination_city_spinner.setAdapter(dataAdapter);
+
+
+
+
     }
 }
