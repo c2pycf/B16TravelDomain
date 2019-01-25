@@ -8,4 +8,25 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="tx_dep_time">Dep time:</string>
+    <string name="tx_arr_time">Arr time:</string>
+    <string name="tx_duration">Duration</string>
+    <string name="base_fare">Base Fare</string>
+    <string name="app_discount">App Discount</string>
+    <string name="service_tax">Service Tax</string>
+    <string name="total_fare">Total Fare</string>
+    <string name="payment_detail">Payment Detail</string>
+    <string name="coupon_checkbox">Have a coupon?</string>
+    <string name="coupon_hint">Enter your coupon code</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="payment_method_credit">Credit/debit Card</string>
+    <string name="proceed_to_payment">Proceed for Payment</string>
+    <string name="save_reservation_infor"><u>Save this reservation for later?</u></string>
+    <string name="billing_address">Billing address</string>
+    <string name="billing_address_1">Address</string>
+    <string name="billing_address_2">Address (Optional)</string>
+    <string name="hint_billing_city">City</string>
+    <string name="hint_billing_state">State</string>
+    <string name="hint_billing_zip">Zip code</string>
+    <string name="bt_billing_check_out">Check out</string>
 </resources>
