@@ -1,10 +1,17 @@
 package com.example.fang.b16traveldomain.ticketconfirmation;
 
+import android.os.Build;
+
 import com.example.fang.b16traveldomain.model.Coupon;
 import com.example.fang.b16traveldomain.model.TicketInformation;
+import com.example.fang.b16traveldomain.model.dataresource.TicketInforDataResource;
+import com.example.fang.b16traveldomain.model.dataresource.TicketInforRepository;
 import com.example.fang.b16traveldomain.network.GetDataService;
 import com.example.fang.b16traveldomain.network.RetrofitClientInstance;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
 
 import retrofit2.Call;
@@ -19,11 +26,13 @@ public class TicketDetailPresenter implements TicketDetailContract.TicketDetailP
     private GetDataService mDataService;
     private TicketInformation mTicketInformation;
     static private final String TAG = TicketDetailPresenter.class.getSimpleName();
+    private TicketInforDataResource ticketInforDataResource;
 
     public TicketDetailPresenter(TicketDetailActivity activity) {
         this.mView = activity;
         mRetrofit = RetrofitClientInstance.getInstance();
         mDataService = mRetrofit.create(GetDataService.class);
+        ticketInforDataResource = new TicketInforRepository(activity.getApplication());
         //Connect to local db
     }
 
@@ -69,6 +78,25 @@ public class TicketDetailPresenter implements TicketDetailContract.TicketDetailP
     public void saveReservation(TicketInformation ticketInformation) {
         //save ticket information
         mTicketInformation = ticketInformation;
+        LocalDateTime dateTime =null;
+        if(mTicketInformation.getOrder_time()==null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                dateTime = LocalDateTime.now();
+                FormatStyle formatStyle = FormatStyle.MEDIUM;
+                DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(formatStyle, formatStyle);
+                String orderTime = dateTime.format(formatter);
+                mTicketInformation.setOrder_time(orderTime);
+            }
+            //insert new row
+            ticketInforDataResource.saveTicketInfor(mTicketInformation);
+            mView.showToast("Reservation information saved");
+        }
+        else {
+            //update ticket
+            ticketInforDataResource.updateTicketInfor(mTicketInformation);
+            mView.showToast("Reservation information updated");
+        }
+
 
     }
 }

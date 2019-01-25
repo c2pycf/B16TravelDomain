@@ -74,6 +74,7 @@ public class OrderConfirmedActivity extends AppCompatActivity implements OrderCo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_confirmed);
+        format = NumberFormat.getCurrencyInstance();
         ButterKnife.bind(this);
         mPresenter = new OrderConfirmedPresenter(this);
         getTicketInformation();

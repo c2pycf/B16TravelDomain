@@ -1,28 +1,63 @@
 package com.example.fang.b16traveldomain.model;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity(tableName = "ticket_information")
 public class TicketInformation implements Serializable {
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "order_time")
+    String order_time;
+    @ColumnInfo(name = "route_name")
     String route_name;
+    @ColumnInfo(name = "busid")
     String busid;
+    @ColumnInfo(name = "fare")
     String fare;
+    @ColumnInfo(name = "coupondiscount")
     String coupondiscount;
+    @ColumnInfo(name = "servicetax")
     String servicetax;
+    @ColumnInfo(name = "journydate")
     String journydate;
+    @ColumnInfo(name = "boardingtime")
     String boardingtime;
+    @ColumnInfo(name = "droppingtime")
     String droppingtime;
+    @ColumnInfo(name = "duration")
     String duration;
+    @ColumnInfo(name = "passengerid")
     String passengerid;
+    @ColumnInfo(name = "passengeremail")
     String passengeremail;
+    @ColumnInfo(name = "passengermobile")
     String passengermobile;
+    @Ignore
     List<Passenger> passengers;
+
 
     public TicketInformation() {
         List<Passenger> passengers = new ArrayList<>();
+    }
+
+    public void setPassengers(List<Passenger> passengers) {
+        this.passengers = passengers;
+    }
+
+    public String getOrder_time() {
+        return order_time;
+    }
+
+    public void setOrder_time(String order_time) {
+        this.order_time = order_time;
     }
 
     public TicketInformation(String route_name, String busid, String fare, String coupondiscount, String servicetax, String journydate, String boardingtime, String droppingtime, String duration, String passengerid, String passengeremail, String passengermobile) {

@@ -67,6 +67,7 @@ public class PaymentPresenter implements PaymentContract.PaymentPresenter{
 //                mView.showToast(t.getMessage());
 //            }
 //        });
+        mView.showConfirmedActivity();
     }
 
     @Override

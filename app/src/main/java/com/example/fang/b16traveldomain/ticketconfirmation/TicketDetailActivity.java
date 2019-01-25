@@ -127,7 +127,7 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
         tvAppDiscount.setText(appDiscount_calculated);
         tvServiceTax.setText(fare_taxed);
         String totalFare = format.format(fareDouble * (1+ tax - appDiscount));
-        ticketInformation.setFare(totalFare);
+        ticketInformation.setFare(Double.toString(fareDouble * (1+ tax - appDiscount)));
         tvTotal.setText(totalFare);
 
     }
