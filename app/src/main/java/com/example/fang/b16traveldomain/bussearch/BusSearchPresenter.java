@@ -21,7 +21,7 @@ public class BusSearchPresenter implements BusSearchContract.BusSearchPresenter 
     private static final String TAG = BusSearchPresenter.class.getSimpleName();
 
     public BusSearchPresenter(BusSearchActivity activity) {
-        this.busSearchView = busSearchView;
+        this.busSearchView = activity;
         retrofit = RetrofitClientInstance.getInstance();
         getDataService = retrofit.create(GetDataService.class);
     }
@@ -35,8 +35,10 @@ public class BusSearchPresenter implements BusSearchContract.BusSearchPresenter 
             public void onResponse(Call<BusInformationResponse> call, Response<BusInformationResponse> response) {
                 if(response.body() != null){
                     String body = response.message();
+                    BusInformationResponse busInformationResponse = response.body();
                     BusInformationResponse busInformation = response.body();
                     Log.e(TAG, "onResponse: " + busInformation.getBusInformationList().get(0).getBusId());
+                    busSearchView.showBusSearchActivity(busInformationResponse);
                 }
                 else {
                     Log.e(TAG, "onResponse: NUll " );

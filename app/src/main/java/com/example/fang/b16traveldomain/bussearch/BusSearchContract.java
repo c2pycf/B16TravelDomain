@@ -10,6 +10,7 @@ public interface BusSearchContract {
           void showBusSearchActivity(BusInformationResponse busInformationResponse); //display bus search
           void displayError(String s);  //show error
           void setupViews();       // setup layout
+          void getBusSearch();
 
      }
 
