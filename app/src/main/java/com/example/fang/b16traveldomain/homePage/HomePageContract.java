@@ -1,7 +1,10 @@
-package com.example.fang.b16traveldomain.HomePage;
+package com.example.fang.b16traveldomain.homePage;
 
 import java.util.List;
 
+/**
+ * Contract for Home Page fragment
+ */
 public interface HomePageContract  {
 
     interface HomeFragmentView{
@@ -15,6 +18,7 @@ public interface HomePageContract  {
         void getCity();
 
         void sendLatLong();
+        void getCityList();
     }
 
 

@@ -1,10 +1,10 @@
-package com.example.fang.b16traveldomain.HomePage;
+package com.example.fang.b16traveldomain.homePage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,18 +14,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.fang.b16traveldomain.R;
-import com.example.fang.b16traveldomain.network.RetrofitClientInstance;
+import com.example.fang.b16traveldomain.routeActivity.RouteActivity;
+//import  com.example.fang.b16traveldomain.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-import static android.support.constraint.Constraints.TAG;
 
 public class HomePageFragment extends Fragment implements  HomePageContract.HomeFragmentView{
 
@@ -42,7 +35,11 @@ public class HomePageFragment extends Fragment implements  HomePageContract.Home
     HomePagePresenter homePagePresenter;
 
     String start_city , destination_city;
+    int start_city_index, destination_city_index;
+//    CityModelList cityList;
+//    CityModel cityModel;
 
+    String start_lattitude, start_longitude, destination_lattitude, destination_longitude;
 
 
 
@@ -83,17 +80,6 @@ public class HomePageFragment extends Fragment implements  HomePageContract.Home
 
         ////////// 2nd part on search button click
 
-        btn_search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                start_city = String.valueOf(start_city_spinner.getSelectedItem());
-
-
-
-            }
-        });
-
 
 
 
@@ -110,7 +96,7 @@ public class HomePageFragment extends Fragment implements  HomePageContract.Home
     }
 
     @Override
-    public void setCityList(List<CityModel> cityList) {
+    public void setCityList(final List<CityModel> cityList) {
         List<String> cityList_String = new ArrayList<>();
         for(int i =0 ; i <cityList.size();i++){
             cityList_String.add(cityList.get(i).getCityname());
@@ -126,6 +112,43 @@ public class HomePageFragment extends Fragment implements  HomePageContract.Home
         // attaching data adapter to spinner
         start_city_spinner.setAdapter(dataAdapter);
         destination_city_spinner.setAdapter(dataAdapter);
+
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                start_city = String.valueOf(start_city_spinner.getSelectedItem());
+//                destination_city = String.valueOf(destination_city_spinner.getSelectedItem());
+
+
+                start_city_index = start_city_spinner.getSelectedItemPosition();
+                destination_city_index = destination_city_spinner.getSelectedItemPosition();
+
+                start_lattitude = cityList.get(start_city_index).getLattitude();
+                start_longitude = cityList.get(start_city_index).getLongitude();
+
+                destination_longitude = cityList.get(destination_city_index).getLongitude();
+                destination_lattitude = cityList.get(destination_city_index).getLattitude();
+
+                Intent intent = new Intent(getContext(), RouteActivity.class);
+
+                intent.putExtra("start_lattitude", start_lattitude);
+                intent.putExtra("start_longitude", start_longitude);
+                intent.putExtra("destination_longitude", destination_longitude);
+                intent.putExtra("destination_lattitude", destination_lattitude);
+
+                startActivity(intent);
+
+
+
+
+
+
+
+            }
+        });
+
+
 
 
 

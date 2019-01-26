@@ -1,4 +1,4 @@
-package com.example.fang.b16traveldomain.Registration;
+package com.example.fang.b16traveldomain.registration;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

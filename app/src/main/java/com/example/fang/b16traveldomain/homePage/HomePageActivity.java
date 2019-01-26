@@ -1,4 +1,4 @@
-package com.example.fang.b16traveldomain.HomePage;
+package com.example.fang.b16traveldomain.homePage;
 
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +17,7 @@ public class HomePageActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.Frame_layout_Home, homePageFragment);
         transaction.commit();
+
 
 
 

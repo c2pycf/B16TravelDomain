@@ -1,4 +1,4 @@
-package com.example.fang.b16traveldomain.HomePage;
+package com.example.fang.b16traveldomain.homePage;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -42,7 +42,12 @@ public class HomePageActivitywithNavigation extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-    }
+
+            //Fragment implementaion
+
+
+
+        }
 
     @Override
     public void onBackPressed() {
