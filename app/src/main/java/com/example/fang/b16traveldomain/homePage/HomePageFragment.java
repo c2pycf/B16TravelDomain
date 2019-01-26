@@ -1,4 +1,4 @@
-package com.example.fang.b16traveldomain.HomePage;
+package com.example.fang.b16traveldomain.homePage;
 
 import android.content.Intent;
 import android.os.Bundle;

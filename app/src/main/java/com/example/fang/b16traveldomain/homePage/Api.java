@@ -1,4 +1,4 @@
-package com.example.fang.b16traveldomain.HomePage;
+package com.example.fang.b16traveldomain.homePage;
 
 import retrofit2.Call;
 import retrofit2.http.POST;
