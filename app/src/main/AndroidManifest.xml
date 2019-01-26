@@ -7,7 +7,6 @@
 
     <application
         android:allowBackup="true"
-        android:appComponentFactory=""
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -16,12 +15,22 @@
         tools:replace="android:appComponentFactory">
         <activity android:name=".seatsavailable.SeatsAvailableActivity">
 
-
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".ticketConfirmation.TicketDetailActivity"></activity>
         <activity android:name=".paymentgateway.PaymentActivity"></activity>
+        tools:replace="android:appComponentFactory"
+        android:appComponentFactory=""
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ticketConfirmation.TicketDetailActivity" />
+        <activity android:name=".Registration.RegistrationActivity"></activity>
+        <activity android:name=".HomePage.HomePageActivity">
+        <activity android:name=".MainActivity"></activity>
+
+        <activity android:name=".paymentgateway.PaymentActivity">
+        </activity>
         <activity android:name=".bussearch.BusSearchActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +38,12 @@
             </intent-filter>
 
         </activity>
+        <activity
+            android:name=".HomePage.HomePageActivitywithNavigation"
+            android:label="@string/title_activity_home_page_activitywith_navigation"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
+       
     </application>
 
 </manifest>
