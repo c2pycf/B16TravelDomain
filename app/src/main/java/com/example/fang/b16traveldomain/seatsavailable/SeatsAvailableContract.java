@@ -13,6 +13,5 @@ public interface SeatsAvailableContract {
 
     interface SeatsAvailablePresenter{
         void findSeats(String busId);
-
     }
 }

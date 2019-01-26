@@ -35,12 +35,9 @@ public class BusSearchActivity extends AppCompatActivity implements BusSearchCon
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_search);
 
-
         ButterKnife.bind(this);
-
         setupBusSearchMVP();  //bind presenter
         setupViews();   //setup linear layout to recycler view
-
         getBusSearch();   //
         initToolBar();
     }
@@ -59,14 +56,16 @@ public class BusSearchActivity extends AppCompatActivity implements BusSearchCon
     public void showBusSearchActivity(BusInformationResponse busInformationResponse) {
         if(busInformationResponse != null){
             Log.d(TAG, "showBusSearchActivity: "+ busInformationResponse.getBusInformationList().get(0).getBusType());
-            busSearchAdapter = new BusSearchAdapter(this,busInformationResponse.getBusInformationList(),BusSearchActivity.this);
+
+            busSearchAdapter = new BusSearchAdapter(this,
+                    busInformationResponse.getBusInformationList(),
+                    BusSearchActivity.this);
+
             mRecyclerView.setAdapter(busSearchAdapter);
         } else {
             Log.d(TAG, "showBusSearchActivity: " + "response is null");
+            //move all hardcorded strings to strings.xml or constant file
         }
-        //onClick handler
-
-
     }
 
     @Override
@@ -83,7 +82,6 @@ public class BusSearchActivity extends AppCompatActivity implements BusSearchCon
     @Override
     public void getBusSearch() {
         mBusSearchPresenter.searchBus("2");
-
     }
 
 

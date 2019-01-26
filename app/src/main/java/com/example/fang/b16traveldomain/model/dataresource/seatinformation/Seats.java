@@ -7,17 +7,21 @@ import java.util.List;
 public class Seats {
 
     @SerializedName("seatinformation")
-    List<Seat> seats;
+   private List<Seat> seats;
 
-    public Seats(List<Seat> seats) {
-        this.seats = seats;
+    public Seats(List<Seat> seatList) {
+        super();
+        this.seats = seatList;
     }
 
     public List<Seat> getSeats() {
         return seats;
     }
 
-    public void setSeats(List<Seat> seats) {
+    public void setSeats(List<Seat> seats)
+    {
         this.seats = seats;
     }
+
+
 }
