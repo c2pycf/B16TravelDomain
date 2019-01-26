@@ -29,4 +29,9 @@
     <string name="hint_billing_state">State</string>
     <string name="hint_billing_zip">Zip code</string>
     <string name="bt_billing_check_out">Check out</string>
+    <string name="order_payment_status">Payment:</string>
+    <string name="order_payment_status_tv">Paid</string>
+    <string name="order_time">Reservation time:</string>
+    <string name="bt_home">HomePage</string>
+    <string name="apply">Apply</string>
 </resources>

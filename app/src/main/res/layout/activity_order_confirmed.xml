@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".ticketconfirmation.TicketDetailActivity"
+    android:layout_height="match_parent"
+    tools:context=".orderconfirmed.OrderConfirmedActivity"
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
@@ -33,43 +34,26 @@
 
     <include layout="@layout/item_fare_card"/>
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/coupon_checkbox"
-        android:layout_margin="5dp"
-        android:padding="5dp"
-        android:id="@+id/cb_coupon"/>
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="5dp"
-        android:padding="5dp"
-        android:hint="@string/coupon_hint"
-        android:id="@+id/et_coupon"/>
-
-    <Button
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/bt_apply_coupon"
-        android:text="@string/apply"
-        android:layout_margin="5dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/payment_method"
         android:layout_margin="5dp"
-        android:padding="5dp"
-        android:textColor="@color/colorPrimary"/>
+        android:orientation="horizontal">
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/payment_method_credit"
-        android:layout_margin="5dp"
-        android:padding="5dp"
-        android:id="@+id/cb_credit"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/order_payment_status"
+            android:layout_marginStart="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:id="@+id/order_payment_status"
+            android:text="@string/order_payment_status_tv"
+            android:textColor="@color/colorPrimary"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -77,21 +61,25 @@
         android:layout_margin="5dp"
         android:orientation="horizontal">
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="@string/proceed_to_payment"
-            android:id="@+id/bt_proceed_for_payment"/>
+            android:text="@string/order_time"
+            android:layout_marginStart="20dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/save_reservation_infor"
-            android:layout_margin="5dp"
-            android:id="@+id/tv_save_reservation"/>
-
+            android:layout_marginStart="100dp"
+            android:id="@+id/order_time"/>
     </LinearLayout>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_gravity="center"
+        android:text="@string/bt_home"
+        android:id="@+id/bt_order_confirm_home"/>
 
 </LinearLayout>

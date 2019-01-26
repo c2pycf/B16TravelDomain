@@ -3,6 +3,8 @@ package com.example.fang.b16traveldomain;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.fang.b16traveldomain.savereservation.SaveReservationFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -10,6 +12,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ///
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment_container, new SaveReservationFragment())
+                .addToBackStack(null)
+                .commit();
+
     }
 }

@@ -20,7 +20,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ActionBarPopupThemeOverlay"
-        app:theme="@style/ActionBarThemeOverlay"></android.support.v7.widget.Toolbar>
+        app:theme="@style/ActionBarThemeOverlay">
+
+    </android.support.v7.widget.Toolbar>
 
     <View
         android:id="@+id/view"

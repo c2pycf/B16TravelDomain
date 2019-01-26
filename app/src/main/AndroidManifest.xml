@@ -18,11 +18,10 @@
         <activity android:name=".seatsavailable.SeatsAvailableActivity">
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".ticketConfirmation.TicketDetailActivity"></activity>
         <activity android:name=".paymentgateway.PaymentActivity"></activity>
-
+        <activity android:name=".ticketconfirmation.TicketDetailActivity" />
         <activity android:name=".Registration.RegistrationActivity"></activity>
-        <activity android:name=".HomePage.HomePageActivity"></activity>
+        <activity android:name=".HomePage.HomePageActivity"/>
         <activity android:name=".bussearch.BusSearchActivity">
 
             <intent-filter>
@@ -37,7 +36,7 @@
             android:label="@string/title_activity_home_page_activitywith_navigation"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
-       
+
     </application>
 
 </manifest>

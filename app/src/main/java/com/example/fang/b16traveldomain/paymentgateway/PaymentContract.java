@@ -16,5 +16,7 @@ public interface PaymentContract {
         void proceedPayment(Card card, TicketInformation ticketInformation);
 
         void proceedOrder(TicketInformation ticketInformation);
+
+        void reserveSeats(TicketInformation ticketInformation);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.fang.b16traveldomain.network;
 
+
 import com.example.fang.b16traveldomain.model.Coupon;
 import com.example.fang.b16traveldomain.model.TicketInformation;
 import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformationResponse;
@@ -31,6 +32,7 @@ public interface GetDataService {
     //response for api 7 (seat search by bus id)
     @GET("seatinfo.php?")
     Call<Seats> getSeats(@Query("busid") String busid);
+
 
 
 
