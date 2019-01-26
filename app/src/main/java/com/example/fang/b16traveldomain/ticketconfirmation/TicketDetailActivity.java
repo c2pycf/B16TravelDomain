@@ -1,5 +1,7 @@
 package com.example.fang.b16traveldomain.ticketconfirmation;
 
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -87,6 +89,7 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket_detail);
+
         ButterKnife.bind(this);
         //set up currency format;
         format = NumberFormat.getCurrencyInstance();
@@ -194,6 +197,7 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
         } else {
             showToast("Please select your payment method");
         }
+
     }
 
 }
