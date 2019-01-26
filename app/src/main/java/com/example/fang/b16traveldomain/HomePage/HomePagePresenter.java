@@ -1,18 +1,15 @@
 package com.example.fang.b16traveldomain.HomePage;
 
 import android.util.Log;
-import android.widget.ArrayAdapter;
 
 import com.example.fang.b16traveldomain.network.RetrofitClientInstance;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.support.constraint.Constraints.TAG;
 
@@ -22,6 +19,10 @@ public class HomePagePresenter implements  HomePageContract.HomeFragmentPresente
 
     Retrofit retrofitClientInstance;
     // = RetrofitClientInstance.getInstance();
+
+    CityModelList cityModelList;
+
+
 
 
 
@@ -35,9 +36,6 @@ public class HomePagePresenter implements  HomePageContract.HomeFragmentPresente
     @Override
     public void pullCityData() {
 
-
-
-
     }
 
     @Override
@@ -46,13 +44,13 @@ public class HomePagePresenter implements  HomePageContract.HomeFragmentPresente
         Api api = retrofitClientInstance.create(Api.class);
 
 
-        Call<cityModelList> call = api.getCity();
+        Call<CityModelList> call = api.getCity();
 
 
 
-        call.enqueue(new Callback<cityModelList>() {
+        call.enqueue(new Callback<CityModelList>() {
             @Override
-            public void onResponse(Call<cityModelList> call, Response<cityModelList> response) {
+            public void onResponse(Call<CityModelList> call, Response<CityModelList> response) {
                 List<CityModel> cityList = response.body().getCityModelList();
                 homeFragmentView.setCityList(cityList);
                 for(CityModel c : response.body().getCityModelList()){
@@ -61,7 +59,7 @@ public class HomePagePresenter implements  HomePageContract.HomeFragmentPresente
             }
 
             @Override
-            public void onFailure(Call<cityModelList> call, Throwable t) {
+            public void onFailure(Call<CityModelList> call, Throwable t) {
                 Log.e(TAG, "onFailure:" + t.getMessage());
             }
         });
@@ -71,6 +69,14 @@ public class HomePagePresenter implements  HomePageContract.HomeFragmentPresente
 
     @Override
     public void sendLatLong() {
+        //homeFragmentView.
+
+    }
+
+    @Override
+    public void getCityList() {
+
+
 
     }
 }

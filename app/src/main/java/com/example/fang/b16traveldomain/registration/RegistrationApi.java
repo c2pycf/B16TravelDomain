@@ -1,4 +1,4 @@
-package com.example.fang.b16traveldomain.Registration;
+package com.example.fang.b16traveldomain.registration;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
