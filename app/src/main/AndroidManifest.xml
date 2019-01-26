@@ -12,23 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:appComponentFactory">
+        tools:replace="android:appComponentFactory"
+        android:appComponentFactory=""
+        android:usesCleartextTraffic="true">
         <activity android:name=".seatsavailable.SeatsAvailableActivity">
-
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".ticketConfirmation.TicketDetailActivity"></activity>
         <activity android:name=".paymentgateway.PaymentActivity"></activity>
-        tools:replace="android:appComponentFactory"
-        android:appComponentFactory=""
-        android:usesCleartextTraffic="true">
-        <activity android:name=".ticketConfirmation.TicketDetailActivity" />
-        <activity android:name=".Registration.RegistrationActivity"></activity>
-        <activity android:name=".HomePage.HomePageActivity">
-        <activity android:name=".MainActivity"></activity>
 
-        <activity android:name=".paymentgateway.PaymentActivity">
-        </activity>
+        <activity android:name=".Registration.RegistrationActivity"></activity>
+        <activity android:name=".HomePage.HomePageActivity"></activity>
         <activity android:name=".bussearch.BusSearchActivity">
 
             <intent-filter>
