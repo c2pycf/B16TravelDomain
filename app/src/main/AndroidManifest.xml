@@ -16,7 +16,6 @@
         android:appComponentFactory=""
         android:usesCleartextTraffic="true">
         <activity android:name=".seatsavailable.SeatsAvailableActivity">
-
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".paymentgateway.PaymentActivity"></activity>
