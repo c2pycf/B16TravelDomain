@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.fang.b16traveldomain">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -12,14 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        tools:replace="android:appComponentFactory">
+        <activity android:name=".seatsavailable.SeatsAvailableActivity">
+
+        </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ticketConfirmation.TicketDetailActivity"></activity>
+        <activity android:name=".paymentgateway.PaymentActivity"></activity>
         tools:replace="android:appComponentFactory"
         android:appComponentFactory=""
         android:usesCleartextTraffic="true">
         <activity android:name=".ticketConfirmation.TicketDetailActivity" />
         <activity android:name=".Registration.RegistrationActivity"></activity>
         <activity android:name=".HomePage.HomePageActivity">
-
-       
         <activity android:name=".MainActivity"></activity>
 
         <activity android:name=".paymentgateway.PaymentActivity">
@@ -31,6 +36,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".HomePage.HomePageActivitywithNavigation"

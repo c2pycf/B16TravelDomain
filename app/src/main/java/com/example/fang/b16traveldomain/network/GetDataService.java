@@ -4,6 +4,7 @@ import com.example.fang.b16traveldomain.model.Coupon;
 import com.example.fang.b16traveldomain.model.TicketInformation;
 import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformationResponse;
 import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
+import com.example.fang.b16traveldomain.model.dataresource.seatinformation.Seats;
 
 
 
@@ -23,9 +24,14 @@ public interface GetDataService {
     @GET("ticketcheckoutinfo.php?")
     Call<List<String>> getOrderResult(@QueryMap TicketInformation ticketInformation);
 
-    //bus search service by route id
+    //response for api 6 (bus search service by route id )
     @GET("businfo.php?")
     Call<BusInformationResponse> getBuses(@Query("routeid") String routeid);
+
+    //response for api 7 (seat search by bus id)
+    @GET("seatinfo.php?")
+    Call<Seats> getSeats(@Query("busid") String busid);
+
 
 
 }
