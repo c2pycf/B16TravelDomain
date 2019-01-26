@@ -14,7 +14,7 @@ public interface TicketDetailContract {
     interface TicketDetailPresenter {
         void checkCoupon(String coupon, TicketInformation ticketInformation);
 
-        void proceedToPayment(String couponRate, TicketInformation ticketInformation);
+        void proceedToPayment( TicketInformation ticketInformation);
 
         void saveReservation(TicketInformation ticketInformation);
     }

@@ -25,7 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class TicketDetailActivity extends AppCompatActivity implements TicketDetailContract.TicketDetailView{
+public class TicketDetailActivity extends AppCompatActivity implements TicketDetailContract.TicketDetailView {
     static private String TAG = TicketDetailActivity.class.getSimpleName();
     static private String TICKET_INFORMATION_TAG = "ticket_information";
     @BindView(R.id.ticket_detail_toolbar)
@@ -74,12 +74,15 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
     Button btProceedForPayment;
     @BindView(R.id.tv_save_reservation)
     TextView tvSaveReservation;
+    @BindView(R.id.bt_apply_coupon)
+    Button btApplyCoupon;
 
     private TicketInformation ticketInformation;
 
     private TicketDetailPresenter mPresenter;
 
     NumberFormat format;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,12 +93,11 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
 
         mPresenter = new TicketDetailPresenter(this);
         //get ticket information from previous activity
-        if(getTicketInformation()!=null) {
+        if (getTicketInformation() != null) {
             ticketInformation = getTicketInformation();
             //mockTicketInfor();
             setUI();
-        }
-        else{
+        } else {
             mockTicketInfor();
             setUI();
             //showToast("No ticket information");
@@ -111,7 +113,7 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
         ticketInformation.setBoardingtime("09:00 AM");
         ticketInformation.setDroppingtime("08:10 PM");
         ticketInformation.setDuration("11h10m");
-        Passenger passenger1 = new Passenger("1","fang","20","m");
+        Passenger passenger1 = new Passenger("1", "fang", "20", "m");
         List<Passenger> passengers = new ArrayList<>();
         passengers.add(passenger1);
         ticketInformation.setPassengers(passengers);
@@ -133,62 +135,65 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
         String fare_taxed = format.format(fareDouble * tax);
         tvAppDiscount.setText(appDiscount_calculated);
         tvServiceTax.setText(fare_taxed);
-        String totalFare = format.format(fareDouble * (1+ tax - appDiscount));
-        ticketInformation.setFare(Double.toString(fareDouble * (1+ tax - appDiscount)));
+        String totalFare = format.format(fareDouble * (1 + tax - appDiscount));
+        ticketInformation.setFare(Double.toString(fareDouble * (1 + tax - appDiscount)));
         tvTotal.setText(totalFare);
 
     }
 
     private TicketInformation getTicketInformation() {
-        if(getIntent()!=null) {
+        if (getIntent() != null) {
             return (TicketInformation) getIntent().getSerializableExtra(TICKET_INFORMATION_TAG);
-        }
-        else{
+        } else {
             return null;
         }
     }
 
-    @OnClick({R.id.bt_proceed_for_payment, R.id.tv_save_reservation})
+    @OnClick({R.id.bt_proceed_for_payment, R.id.tv_save_reservation, R.id.bt_apply_coupon})
     public void onViewClicked(View view) {
-       //if(getTicketInformation()!=null) {
-            Log.d(TAG,"Button clicked");
-            switch (view.getId()) {
-                case R.id.bt_proceed_for_payment:
-                    if (cbCoupon.isChecked()) {
-                        if (!etCoupon.getText().toString().isEmpty()) {
-                            String coupon = etCoupon.getText().toString();
-                            mPresenter.checkCoupon(coupon, ticketInformation);
-                        } else {
-                            this.showToast("Empty coupon!");
-                        }
+        //if(getTicketInformation()!=null) {
+        Log.d(TAG, "Button clicked");
+        switch (view.getId()) {
+            case R.id.bt_proceed_for_payment:
+                if(cbCredit.isChecked()) {
+                    mPresenter.proceedToPayment(ticketInformation);
+                } else {
+                    showToast("No credit method selected");
+                }
+                break;
+            case R.id.tv_save_reservation:
+                mPresenter.saveReservation(ticketInformation);
+                break;
+            case R.id.bt_apply_coupon:
+                if (cbCoupon.isChecked()) {
+                    if (!etCoupon.getText().toString().isEmpty()) {
+                        String coupon = etCoupon.getText().toString();
+                        mPresenter.checkCoupon(coupon, ticketInformation);
+                    } else {
+                        this.showToast("Empty coupon!");
                     }
-                    else {
-                        mPresenter.proceedToPayment("0",ticketInformation);
-                    }
-                    break;
-                case R.id.tv_save_reservation:
-                    mPresenter.saveReservation(ticketInformation);
-                    break;
-            }
+                }
+
         }
+    }
     //}
 
     @Override
     public void showToast(String msg) {
-        Snackbar.make(btProceedForPayment,""+msg,Snackbar.LENGTH_LONG).show();
+        Snackbar.make(btProceedForPayment, "" + msg, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void showPaymentActivity(TicketInformation ticketInformation) {
         //Start payment activity after check checkbox
-        if(cbCredit.isChecked()) {
+        if (cbCredit.isChecked()) {
             //new activity
-            Intent intent = new Intent(TicketDetailActivity.this,PaymentActivity.class);
+            Intent intent = new Intent(TicketDetailActivity.this, PaymentActivity.class);
             intent.putExtra(TICKET_INFORMATION_TAG, ticketInformation);
             startActivity(intent);
-        }
-        else {
+        } else {
             showToast("Please select your payment method");
         }
     }
+
 }

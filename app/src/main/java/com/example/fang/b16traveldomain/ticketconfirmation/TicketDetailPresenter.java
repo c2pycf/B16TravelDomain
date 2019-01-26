@@ -27,6 +27,7 @@ public class TicketDetailPresenter implements TicketDetailContract.TicketDetailP
     private TicketInformation mTicketInformation;
     static private final String TAG = TicketDetailPresenter.class.getSimpleName();
     private TicketInforDataResource ticketInforDataResource;
+    private String couponRate = "0";
 
     public TicketDetailPresenter(TicketDetailActivity activity) {
         this.mView = activity;
@@ -45,8 +46,9 @@ public class TicketDetailPresenter implements TicketDetailContract.TicketDetailP
             public void onResponse(Call<List<Coupon>> call, Response<List<Coupon>> response) {
                 List<Coupon> coupons= response.body();
                 if(coupons !=null) {
-                    String couponRate = coupons.get(0).getDiscount();
-                    proceedToPayment(couponRate,mTicketInformation);
+                    couponRate = coupons.get(0).getDiscount();
+                    mView.showToast("Coupon applied");
+                    //proceedToPayment(mTicketInformation);
                 }
                 else {
                     mView.showToast("Coupon invalid");
@@ -56,14 +58,14 @@ public class TicketDetailPresenter implements TicketDetailContract.TicketDetailP
 
             @Override
             public void onFailure(Call<List<Coupon>> call, Throwable t) {
-
+                mView.showToast(t.getMessage());
             }
         });
 
     }
 
     @Override
-    public void proceedToPayment(String couponRate, TicketInformation ticketInformation) {
+    public void proceedToPayment( TicketInformation ticketInformation) {
 //        float fare = Float.parseFloat(mTicketInformation.getFare());
 //        float rate = Float.parseFloat(couponRate);
 //        float newFareFloat = fare*(100-rate)/100;
