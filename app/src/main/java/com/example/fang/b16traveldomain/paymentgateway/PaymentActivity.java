@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import com.example.fang.b16traveldomain.R;
 import com.example.fang.b16traveldomain.model.TicketInformation;
+import com.example.fang.b16traveldomain.orderconfirmed.OrderConfirmedActivity;
 import com.stripe.android.model.Card;
 import com.stripe.android.view.CardMultilineWidget;
 
@@ -48,7 +49,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentContrac
     private void getTicketInfor() {
         if(getIntent().getSerializableExtra(TICKET_INFORMATION_TAG)!=null) {
             ticketInformation = (TicketInformation) getIntent().getSerializableExtra(TICKET_INFORMATION_TAG);
-            Log.d(TAG,ticketInformation.getBusid());
+            Log.d(TAG,ticketInformation.getDuration());
         }
     }
 
@@ -78,7 +79,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentContrac
 
     @Override
     public void showConfirmedActivity() {
-        Intent intent = new Intent();
+        Intent intent = new Intent(PaymentActivity.this, OrderConfirmedActivity.class);
         intent.putExtra(TICKET_INFORMATION_TAG,ticketInformation);
         startActivity(intent);
     }

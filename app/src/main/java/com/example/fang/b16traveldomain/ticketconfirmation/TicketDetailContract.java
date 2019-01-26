@@ -1,4 +1,4 @@
-package com.example.fang.b16traveldomain.ticketConfirmation;
+package com.example.fang.b16traveldomain.ticketconfirmation;
 
 import com.example.fang.b16traveldomain.model.TicketInformation;
 
@@ -13,7 +13,7 @@ public interface TicketDetailContract {
     interface TicketDetailPresenter {
         void checkCoupon(String coupon, TicketInformation ticketInformation);
 
-        void proceedToPayment(String couponRate, TicketInformation ticketInformation);
+        void proceedToPayment( TicketInformation ticketInformation);
 
         void saveReservation(TicketInformation ticketInformation);
     }

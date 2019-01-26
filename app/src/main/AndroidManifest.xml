@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.fang.b16traveldomain">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -14,22 +14,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:replace="android:appComponentFactory">
+        tools:replace="android:appComponentFactory"
+        android:appComponentFactory=""
+        android:usesCleartextTraffic="true">
         <activity android:name=".routeActivity.RouteActivity"></activity>
         <activity android:name=".ticketConfirmation.TicketDetailActivity" />
         <activity android:name=".registration.RegistrationActivity" />
-        <activity android:name=".homePage.HomePageActivity" >
+        <activity android:name=".homePage.HomePageActivity" />
+        <activity android:name=".seatsavailable.SeatsAvailableActivity">
+        </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".paymentgateway.PaymentActivity"></activity>
+        <activity android:name=".ticketconfirmation.TicketDetailActivity" />
+        <activity android:name=".bussearch.BusSearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".paymentgateway.PaymentActivity"></activity>
         <activity android:name=".bussearch.BusSearchActivity">
-
         </activity>
         <activity
             android:name=".homePage.HomePageActivitywithNavigation"

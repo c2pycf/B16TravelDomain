@@ -52,20 +52,26 @@ public class PaymentPresenter implements PaymentContract.PaymentPresenter{
 
     @Override
     public void proceedOrder(final TicketInformation ticketInformation) {
-        Call<List<String>> call = mDataService.getOrderResult(ticketInformation);
-        call.enqueue(new Callback<List<String>>() {
-            @Override
-            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
-                mView.showToast(response.body().get(0));
-                mView.showConfirmedActivity();
-            }
+//        Call<List<String>> call = mDataService.getOrderResult(ticketInformation);
+//        call.enqueue(new Callback<List<String>>() {
+//            @Override
+//            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+//                mView.showToast(response.body().get(0));
+//                mView.showConfirmedActivity();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<String>> call, Throwable t) {
+//
+//                Log.e(TAG,t.getMessage());
+//                mView.showToast(t.getMessage());
+//            }
+//        });
+        mView.showConfirmedActivity();
+    }
 
-            @Override
-            public void onFailure(Call<List<String>> call, Throwable t) {
+    @Override
+    public void reserveSeats(TicketInformation ticketInformation) {
 
-                Log.e(TAG,t.getMessage());
-                mView.showToast(t.getMessage());
-            }
-        });
     }
 }
