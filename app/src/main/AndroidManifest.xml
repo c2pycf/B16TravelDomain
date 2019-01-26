@@ -20,7 +20,7 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".paymentgateway.PaymentActivity"></activity>
-        <activity android:name=".ticketConfirmation.TicketDetailActivity" />
+        <activity android:name=".ticketconfirmation.TicketDetailActivity" />
         <activity android:name=".Registration.RegistrationActivity"></activity>
         <activity android:name=".HomePage.HomePageActivity"/>
         <activity android:name=".bussearch.BusSearchActivity">
