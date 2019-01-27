@@ -41,8 +41,8 @@ public class PaymentActivity extends AppCompatActivity implements PaymentContrac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         ButterKnife.bind(this);
-        mPresenter = new PaymentPresenter(this);
         getTicketInfor();
+        mPresenter = new PaymentPresenter(this,ticketInformation);
 
     }
 
@@ -68,7 +68,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentContrac
                 this.showToast("Card date invalid!");
             }
             else {
-                mPresenter.proceedPayment(card,ticketInformation);
+                mPresenter.proceedPayment(card);
             }
         }
     }
