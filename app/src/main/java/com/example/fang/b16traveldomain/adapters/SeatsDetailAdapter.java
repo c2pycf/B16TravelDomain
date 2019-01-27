@@ -2,6 +2,7 @@ package com.example.fang.b16traveldomain.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SeatsDetailAdapter extends RecyclerView.Adapter{
+    static private final String TAG = SeatsDetailAdapter.class.getSimpleName();
+
     TicketInformation ticketInformation;
     PassengerInformationPresenter mPresenter;
 
@@ -32,12 +35,12 @@ public class SeatsDetailAdapter extends RecyclerView.Adapter{
         switch (i){
             case (0):
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_date_card,viewGroup,false);
-                return new SeatsDetailDateViewHoder(view);
+                return new SeatsDetailDateViewHolder(view);
             case (1):
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_passenger_contact,viewGroup,false);
                 return new SeatsDetailContactViewHolder(view);
             default:
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_passenger_contact,viewGroup,false);
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_passenger_detail,viewGroup,false);
                 return new SeatsDetailPassengerViewHolder(view);
 
         }
@@ -45,15 +48,17 @@ public class SeatsDetailAdapter extends RecyclerView.Adapter{
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        final int type = getItemViewType(i);
+        int type =viewHolder.getItemViewType();
+        final int position = i;
+        Log.d(TAG, "Position: " + position + "   Type: " + type);
         switch (type){
             case (0):
-                SeatsDetailDateViewHoder dateViewHolder = (SeatsDetailDateViewHoder) viewHolder;
-                String date = ticketInformation.getJournydate();
-                String dates[] = date.split("/s");
-                dateViewHolder.tvWeekDateCard.setText(dates[0]);
-                dateViewHolder.tvDateDateCard.setText(dates[1]);
-                dateViewHolder.tvMonthDateCard.setText(dates[2]);
+                SeatsDetailDateViewHolder dateViewHolder = (SeatsDetailDateViewHolder) viewHolder;
+//                String date = ticketInformation.getJournydate();
+//                String dates[] = date.split("/s");
+//                dateViewHolder.tvWeekDateCard.setText(dates[0]);
+//                dateViewHolder.tvDateDateCard.setText(dates[1]);
+//                dateViewHolder.tvMonthDateCard.setText(dates[2]);
                 dateViewHolder.tvArrDateCard.setText(ticketInformation.getBoardingtime());
                 dateViewHolder.tvDepDateCard.setText(ticketInformation.getDroppingtime());
                 dateViewHolder.tvDurationDateCard.setText(ticketInformation.getDuration());
@@ -72,9 +77,10 @@ public class SeatsDetailAdapter extends RecyclerView.Adapter{
             default:
                 SeatsDetailPassengerViewHolder passengerViewHolder = (SeatsDetailPassengerViewHolder) viewHolder;
                 passengerViewHolder.seatId.setText(ticketInformation.getPassanger(i-2).getSelectedseat());
-                mPresenter.name[type - 2] = passengerViewHolder.etPassengerName;
-                mPresenter.age[type - 2] = passengerViewHolder.etPassengerAge;
+                mPresenter.name.add(i-2,passengerViewHolder.etPassengerName);
+                mPresenter.age.add(i - 2, passengerViewHolder.etPassengerAge);
                 if (ticketInformation.getPassanger(i-2)!=null) {
+                    Log.d(TAG,ticketInformation.getPassanger(i-2).getPassengername());
                     passengerViewHolder.etPassengerName.setText(ticketInformation.getPassanger(i-2).getPassengername());
                     passengerViewHolder.etPassengerAge.setText(ticketInformation.getPassanger(i-2).getPassengerage());
                     if (ticketInformation.getPassanger(i-2).getPassengergender().equals("Male")){
@@ -86,13 +92,13 @@ public class SeatsDetailAdapter extends RecyclerView.Adapter{
                 passengerViewHolder.rbPassengerMale.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mPresenter.gender[type -2] = "Male";
+                        mPresenter.gender.add(position -2, "Male");
                     }
                 });
                 passengerViewHolder.rbPassengerFemale.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mPresenter.gender[type -2] = "Female";
+                        mPresenter.gender.add(position -2,  "Female");
                     }
                 });
         }
@@ -108,7 +114,7 @@ public class SeatsDetailAdapter extends RecyclerView.Adapter{
         return position;
     }
 
-    public class SeatsDetailDateViewHoder extends RecyclerView.ViewHolder {
+    public class SeatsDetailDateViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.tv_date_date_card)
         TextView tvDateDateCard;
@@ -129,9 +135,14 @@ public class SeatsDetailAdapter extends RecyclerView.Adapter{
         @BindView(R.id.tv_duration_date_card)
         TextView tvDurationDateCard;
 
-        public SeatsDetailDateViewHoder(@NonNull View itemView) {
+        public SeatsDetailDateViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(itemView);
+            tvDateDateCard = itemView.findViewById(R.id.tv_date_date_card);
+            tvWeekDateCard = itemView.findViewById(R.id.tv_week_date_card);
+            tvMonthDateCard = itemView.findViewById(R.id.tv_month_date_card);
+            tvDepDateCard = itemView.findViewById(R.id.tv_dep_date_card);
+            tvArrDateCard = itemView.findViewById(R.id.tv_arr_date_card);
+            tvDurationDateCard = itemView.findViewById(R.id.tv_duration_date_card);
         }
     }
 
@@ -144,7 +155,8 @@ public class SeatsDetailAdapter extends RecyclerView.Adapter{
 
         public SeatsDetailContactViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(itemView);
+            etPassengerMail = itemView.findViewById(R.id.et_passenger_mail);
+            etPassengerMobile = itemView.findViewById(R.id.et_passenger_mobile);
         }
     }
 
@@ -165,7 +177,12 @@ public class SeatsDetailAdapter extends RecyclerView.Adapter{
 
         public SeatsDetailPassengerViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(itemView);
+            tvPassengerDetailTitle = itemView.findViewById(R.id.tv_passenger_detail_title);
+            seatId = itemView.findViewById(R.id.seat_id);
+            etPassengerName = itemView.findViewById(R.id.et_passenger_name);
+            rbPassengerMale = itemView.findViewById(R.id.rb_passenger_male);
+            rbPassengerFemale = itemView.findViewById(R.id.rb_passenger_female);
+            etPassengerAge = itemView.findViewById(R.id.tv_passenger_age);
         }
     }
 }

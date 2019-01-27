@@ -41,7 +41,7 @@ public class SavedReservationAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         SavedReservationViewHolder viewHolder1 = (SavedReservationViewHolder) viewHolder;
         TicketInformation ticketInformation = ticketInformations.get(i);
-        viewHolder1.tvReserveTime.setText(ticketInformation.getJournydate());
+        //viewHolder1.tvReserveTime.setText(ticketInformation.getJournydate());
         viewHolder1.tvStartTime.setText(ticketInformation.getBoardingtime());
         viewHolder1.tvEndTime.setText(ticketInformation.getDroppingtime());
         viewHolder1.tvSaveAt.setText(ticketInformation.getOrder_time());
