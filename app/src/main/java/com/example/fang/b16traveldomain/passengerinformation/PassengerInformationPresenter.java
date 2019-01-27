@@ -23,8 +23,8 @@ public class PassengerInformationPresenter implements PassengerInformationContra
     private int passengerCount;
     private PassengerInformationContract.PassengerInformationView mView;
     
-    TicketInformation mTicketInformation;
-    UserRepository userDataSource;
+    private TicketInformation mTicketInformation;
+    private UserRepository userDataSource;
     TicketInforDataResource ticketInforDataResource;
 
     public PassengerInformationPresenter(PassengerInformationActivity activity) {
@@ -49,7 +49,8 @@ public class PassengerInformationPresenter implements PassengerInformationContra
     @Override
     public void setNewTicketInfor(ArrayList<String> seats, BusInformation busInformation) {
         mTicketInformation = new TicketInformation();
-        //get journy time
+        mTicketInformation.setJournydate( userDataSource.getDate());
+        mTicketInformation.setRoute_name(userDataSource.getRoute());
         //set time
         //get start time
         //set route ID
@@ -63,6 +64,10 @@ public class PassengerInformationPresenter implements PassengerInformationContra
             Passenger passenger = new Passenger(seats.get(i),null,null,null);
             mTicketInformation.addPassanger(passenger);
         }
+    }
+
+    private String[] convertDate(String journeyDate) {
+        return journeyDate.split("/s");
     }
 
     @Override

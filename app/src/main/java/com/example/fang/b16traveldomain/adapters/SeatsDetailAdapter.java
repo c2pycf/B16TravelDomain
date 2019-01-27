@@ -50,9 +50,10 @@ public class SeatsDetailAdapter extends RecyclerView.Adapter{
             case (0):
                 SeatsDetailDateViewHoder dateViewHolder = (SeatsDetailDateViewHoder) viewHolder;
                 String date = ticketInformation.getJournydate();
-                //dateViewHolder.tvWeekDateCard.setText();
-                //dateViewHolder.tvDateDateCard.setText();
-                //dateViewHolder.tvMonthDateCard.setText();
+                String dates[] = date.split("/s");
+                dateViewHolder.tvWeekDateCard.setText(dates[0]);
+                dateViewHolder.tvDateDateCard.setText(dates[1]);
+                dateViewHolder.tvMonthDateCard.setText(dates[2]);
                 dateViewHolder.tvArrDateCard.setText(ticketInformation.getBoardingtime());
                 dateViewHolder.tvDepDateCard.setText(ticketInformation.getDroppingtime());
                 dateViewHolder.tvDurationDateCard.setText(ticketInformation.getDuration());

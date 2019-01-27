@@ -7,7 +7,7 @@ public interface UserRepository {
 
     void getUser();
 
-    void getDate();
+    String getDate();
 
     void saveRoute(String route);
 

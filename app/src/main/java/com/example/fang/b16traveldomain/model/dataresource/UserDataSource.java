@@ -30,8 +30,8 @@ public class UserDataSource implements UserRepository{
     }
 
     @Override
-    public void getDate() {
-        mLocalUserResource.getDate();
+    public String getDate() {
+        return mLocalUserResource.getDate();
 
     }
 

@@ -89,6 +89,12 @@ public class OrderConfirmedActivity extends AppCompatActivity implements OrderCo
     }
 
     private void setUpViews() {
+        String date = ticketInformation.getJournydate();
+        String dates[] = date.split("/s");
+        tvWeekDateCard.setText(dates[0]);
+        tvDateDateCard.setText(dates[1]);
+        tvMonthDateCard.setText(dates[2]);
+
         tvDepDateCard.setText(ticketInformation.getBoardingtime());
         tvArrDateCard.setText(ticketInformation.getDroppingtime());
         tvDurationDateCard.setText(ticketInformation.getDuration());
