@@ -34,4 +34,13 @@
     <string name="order_time">Reservation time:</string>
     <string name="bt_home">HomePage</string>
     <string name="apply">Apply</string>
+    <string name="passenger_contact_title">Passenger contact</string>
+    <string name="passenger_mail">Enter your email</string>
+    <string name="passenger_mobile">Enter you phone number</string>
+    <string name="passenger_detail_title">Passenger detail</string>
+    <string name="passenger_name">Enter passenger name</string>
+    <string name="passenger_age">Age</string>
+    <string name="passenger_gender_male">Male</string>
+    <string name="passenger_gender_female">Female</string>
+    <string name="confirm">Confirm</string>
 </resources>

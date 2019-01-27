@@ -8,4 +8,8 @@ public interface UserRepository {
     void getUser();
 
     void getDate();
+
+    void saveRoute(String route);
+
+    String getRoute();
 }

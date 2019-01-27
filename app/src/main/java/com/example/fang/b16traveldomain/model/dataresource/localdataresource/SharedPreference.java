@@ -6,8 +6,17 @@ import android.content.SharedPreferences;
 public class SharedPreference implements LocalUserResource{
 
     SharedPreferences userPreference;
+    static private final String PREFERENCE_NAME = "srs_user";
+    static private final String USER_ID = "user_id";
+    static private final String USER_NAME = "user_name";
+    static private final String USER_EMAIL = "user_email";
+    static private final String USER_MOBILE = "user_mobile";
+    static private final String JOURNEY_DATE = "journey_date";
+    static private final String ROUTE_ID = "route_id";
+
+
     public SharedPreference(Context context) {
-        userPreference = context.getSharedPreferences("srs_user",Context.MODE_PRIVATE);
+        userPreference = context.getSharedPreferences(PREFERENCE_NAME,Context.MODE_PRIVATE);
 
     }
 
@@ -27,7 +36,17 @@ public class SharedPreference implements LocalUserResource{
     }
 
     @Override
-    public void getDate() {
+    public String getDate() {
+        return userPreference.getString(JOURNEY_DATE,"");
+    }
 
+    @Override
+    public void saveRoute(String route) {
+
+    }
+
+    @Override
+    public String getRoute() {
+        return userPreference.getString(ROUTE_ID,"1");
     }
 }
