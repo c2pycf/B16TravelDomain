@@ -17,7 +17,14 @@ import com.example.fang.b16traveldomain.passengerinformation.PassengerInformatio
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SeatsDetailAdapter extends RecyclerView.Adapter{
+/**
+ * Recycler view adapter for Passenger Information activity
+ *
+ *      Three types of View Holder for adapter:
+ *      1. SeatsDetailDateViewHolder. Contains the UI for showing date information
+ *      2. SeatsDetail
+ */
+public class SeatsDetailAdapter extends RecyclerView.Adapter {
     static private final String TAG = SeatsDetailAdapter.class.getSimpleName();
 
     TicketInformation ticketInformation;
@@ -32,15 +39,15 @@ public class SeatsDetailAdapter extends RecyclerView.Adapter{
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
-        switch (i){
+        switch (i) {
             case (0):
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_date_card,viewGroup,false);
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_date_card, viewGroup, false);
                 return new SeatsDetailDateViewHolder(view);
             case (1):
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_passenger_contact,viewGroup,false);
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_passenger_contact, viewGroup, false);
                 return new SeatsDetailContactViewHolder(view);
             default:
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_passenger_detail,viewGroup,false);
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_passenger_detail, viewGroup, false);
                 return new SeatsDetailPassengerViewHolder(view);
 
         }
@@ -48,10 +55,10 @@ public class SeatsDetailAdapter extends RecyclerView.Adapter{
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        int type =viewHolder.getItemViewType();
+        int type = viewHolder.getItemViewType();
         final int position = i;
         Log.d(TAG, "Position: " + position + "   Type: " + type);
-        switch (type){
+        switch (type) {
             case (0):
                 SeatsDetailDateViewHolder dateViewHolder = (SeatsDetailDateViewHolder) viewHolder;
 //                String date = ticketInformation.getJournydate();
@@ -67,38 +74,38 @@ public class SeatsDetailAdapter extends RecyclerView.Adapter{
                 SeatsDetailContactViewHolder contactViewHolder = (SeatsDetailContactViewHolder) viewHolder;
                 mPresenter.mail = contactViewHolder.etPassengerMail;
                 mPresenter.phone = contactViewHolder.etPassengerMobile;
-                if (ticketInformation.getPassengeremail()!=null){
+                if (ticketInformation.getPassengeremail() != null) {
                     contactViewHolder.etPassengerMail.setText(ticketInformation.getPassengeremail());
                 }
-                if (ticketInformation.getPassengermobile()!=null){
+                if (ticketInformation.getPassengermobile() != null) {
                     contactViewHolder.etPassengerMobile.setText(ticketInformation.getPassengermobile());
                 }
                 break;
             default:
                 SeatsDetailPassengerViewHolder passengerViewHolder = (SeatsDetailPassengerViewHolder) viewHolder;
-                passengerViewHolder.seatId.setText(ticketInformation.getPassanger(i-2).getSelectedseat());
-                mPresenter.name.add(i-2,passengerViewHolder.etPassengerName);
+                passengerViewHolder.seatId.setText(ticketInformation.getPassanger(i - 2).getSelectedseat());
+                mPresenter.name.add(i - 2, passengerViewHolder.etPassengerName);
                 mPresenter.age.add(i - 2, passengerViewHolder.etPassengerAge);
-                if (ticketInformation.getPassanger(i-2)!=null) {
-                    Log.d(TAG,"Passenger name: " +ticketInformation.getPassanger(i-2).getPassengername());
-                    passengerViewHolder.etPassengerName.setText(ticketInformation.getPassanger(i-2).getPassengername());
-                    passengerViewHolder.etPassengerAge.setText(ticketInformation.getPassanger(i-2).getPassengerage());
-                    if (ticketInformation.getPassanger(i-2).getPassengergender().equals("Male")){
+                if (ticketInformation.getPassanger(i - 2) != null) {
+                    Log.d(TAG, "Passenger name: " + ticketInformation.getPassanger(i - 2).getPassengername());
+                    passengerViewHolder.etPassengerName.setText(ticketInformation.getPassanger(i - 2).getPassengername());
+                    passengerViewHolder.etPassengerAge.setText(ticketInformation.getPassanger(i - 2).getPassengerage());
+                    if (ticketInformation.getPassanger(i - 2).getPassengergender().equals("Male")) {
                         passengerViewHolder.rbPassengerMale.setChecked(true);
-                    }else {
+                    } else {
                         passengerViewHolder.rbPassengerFemale.setChecked(true);
                     }
                 }
                 passengerViewHolder.rbPassengerMale.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mPresenter.gender.add(position -2, "Male");
+                        mPresenter.gender.add(position - 2, "Male");
                     }
                 });
                 passengerViewHolder.rbPassengerFemale.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mPresenter.gender.add(position -2,  "Female");
+                        mPresenter.gender.add(position - 2, "Female");
                     }
                 });
         }
@@ -106,7 +113,7 @@ public class SeatsDetailAdapter extends RecyclerView.Adapter{
 
     @Override
     public int getItemCount() {
-        return ticketInformation.getPassangerSize()+2;
+        return ticketInformation.getPassangerSize() + 2;
     }
 
     @Override
