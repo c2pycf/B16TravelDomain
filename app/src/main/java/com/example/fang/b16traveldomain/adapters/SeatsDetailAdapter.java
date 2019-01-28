@@ -80,13 +80,13 @@ public class SeatsDetailAdapter extends RecyclerView.Adapter{
                 mPresenter.name.add(i-2,passengerViewHolder.etPassengerName);
                 mPresenter.age.add(i - 2, passengerViewHolder.etPassengerAge);
                 if (ticketInformation.getPassanger(i-2)!=null) {
-                    Log.d(TAG,ticketInformation.getPassanger(i-2).getPassengername());
+                    Log.d(TAG,"Passenger name: " +ticketInformation.getPassanger(i-2).getPassengername());
                     passengerViewHolder.etPassengerName.setText(ticketInformation.getPassanger(i-2).getPassengername());
                     passengerViewHolder.etPassengerAge.setText(ticketInformation.getPassanger(i-2).getPassengerage());
                     if (ticketInformation.getPassanger(i-2).getPassengergender().equals("Male")){
-                        passengerViewHolder.rbPassengerMale.setSelected(true);
+                        passengerViewHolder.rbPassengerMale.setChecked(true);
                     }else {
-                        passengerViewHolder.rbPassengerFemale.setSelected(true);
+                        passengerViewHolder.rbPassengerFemale.setChecked(true);
                     }
                 }
                 passengerViewHolder.rbPassengerMale.setOnClickListener(new View.OnClickListener() {

@@ -47,8 +47,8 @@ public class PassengerInformationActivity extends AppCompatActivity implements P
 
     private void getIntentFromPreviousActivity() {
         Intent intent = getIntent();
-        if(intent.getSerializableExtra("saved_reservation")!=null){
-            TicketInformation ticketInformation = (TicketInformation) intent.getSerializableExtra("saved_reservation");
+        if(intent.getSerializableExtra(TICKET_INFORMATION_TAG)!=null){
+            TicketInformation ticketInformation = (TicketInformation) intent.getSerializableExtra(TICKET_INFORMATION_TAG);
             mPresenter.loadFromSavedReservation(ticketInformation);
         }
         else if (intent.getStringArrayListExtra("seats")!=null&&intent.getSerializableExtra(BUS_INFORMATION_TAG)!=null){
