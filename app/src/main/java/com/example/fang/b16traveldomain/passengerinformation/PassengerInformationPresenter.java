@@ -12,13 +12,14 @@ import com.example.fang.b16traveldomain.model.dataresource.UserRepository;
 import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PassengerInformationPresenter implements PassengerInformationContract.passengerInformationPresenter {
     public EditText mail;
     public EditText phone;
-    public EditText[] name;
-    public EditText[] age;
-    public String[] gender;
+    public List<EditText> name;
+    public List<EditText> age;
+    public List<String> gender;
 
     private int passengerCount;
     private PassengerInformationContract.PassengerInformationView mView;
@@ -30,6 +31,9 @@ public class PassengerInformationPresenter implements PassengerInformationContra
     public PassengerInformationPresenter(PassengerInformationActivity activity) {
         this.mView = activity;
         userDataSource = new UserDataSource(activity);
+        name = new ArrayList<>();
+        age = new ArrayList<>();
+        gender = new ArrayList<>();
     }
 
 
@@ -37,7 +41,7 @@ public class PassengerInformationPresenter implements PassengerInformationContra
     public void loadFromSavedReservation(TicketInformation ticketInformation) {
         mTicketInformation = ticketInformation;
         passengerCount = ticketInformation.getPassangerSize();
-        SeatsDetailAdapter adapter = new SeatsDetailAdapter(ticketInformation,this);
+        SeatsDetailAdapter adapter = new SeatsDetailAdapter(mTicketInformation,this);
         mView.setAdapter(adapter);
     }
 
@@ -54,16 +58,27 @@ public class PassengerInformationPresenter implements PassengerInformationContra
         //set time
         //get start time
         //set route ID
+        mTicketInformation.setBusid(busInformation.getBusId());
         mTicketInformation.setBoardingtime(busInformation.getBusDepartureTime());
         //get end time
         mTicketInformation.setDroppingtime(busInformation.getDropingTime());
         //get duration
         mTicketInformation.setDuration(busInformation.getJourneyDuration());
         passengerCount = seats.size();
+        String singleFee = busInformation.getFare();
+        mTicketInformation.setFare(Double.toString(calculateTotle(singleFee)));
+
         for (int i=0;i<passengerCount;i++){
-            Passenger passenger = new Passenger(seats.get(i),null,null,null);
+            Passenger passenger = new Passenger(seats.get(i),null,null,"Male");
             mTicketInformation.addPassanger(passenger);
         }
+        SeatsDetailAdapter adapter = new SeatsDetailAdapter(mTicketInformation,this);
+        mView.setAdapter(adapter);
+    }
+
+    private double calculateTotle(String single) {
+        return Double.parseDouble(single)*passengerCount;
+
     }
 
     private String[] convertDate(String journeyDate) {
@@ -73,16 +88,18 @@ public class PassengerInformationPresenter implements PassengerInformationContra
     @Override
     public void setNewPassengerInfor() {
         for(int i=0;i<passengerCount;i++){
-            mTicketInformation.getPassanger(i).setPassengername(name[i].getText().toString());
-            mTicketInformation.getPassanger(i).setPassengerage(age[i].getText().toString());
-            mTicketInformation.getPassanger(i).setPassengername(gender[i]);
+            mTicketInformation.getPassanger(i).setPassengername(name.get(i).getText().toString());
+            mTicketInformation.getPassanger(i).setPassengerage(age.get(i).getText().toString());
+            mTicketInformation.getPassanger(i).setPassengergender(gender.get(i));
         }
+        //null
+        mTicketInformation.setPassengeremail(mail.getText().toString());
+        mTicketInformation.setPassengermobile(phone.getText().toString());
     }
 
     @Override
     public void showConfirmPage() {
         mView.showConfirmPage(mTicketInformation);
     }
-
 
 }

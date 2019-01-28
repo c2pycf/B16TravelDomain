@@ -125,11 +125,11 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
 
     private void setUI() {
         //time UI data
-        String date = ticketInformation.getJournydate();
-        String dates[] = date.split("/s");
-        tvWeekDateCard.setText(dates[0]);
-        tvDateDateCard.setText(dates[1]);
-        tvMonthDateCard.setText(dates[2]);
+//        String date = ticketInformation.getJournydate();
+//        String dates[] = date.split("/s");
+//        tvWeekDateCard.setText(dates[0]);
+//        tvDateDateCard.setText(dates[1]);
+//        tvMonthDateCard.setText(dates[2]);
 
         tvDepDateCard.setText(ticketInformation.getBoardingtime());
         tvArrDateCard.setText(ticketInformation.getDroppingtime());

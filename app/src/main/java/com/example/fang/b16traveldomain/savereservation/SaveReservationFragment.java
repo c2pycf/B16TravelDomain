@@ -55,14 +55,8 @@ public class SaveReservationFragment extends Fragment {
                     for (int i = 0; i < ticketInformations.size(); i++) {
                         ticketInformations.get(i).setPassengers(saveReservationViewHolder.getPassengers(ticketInformations.get(i).getOrder_time()));
                         Log.d(TAG,"Passenger " + ticketInformations.get(i).getPassanger(0).getPassengername());
+                        Log.d(TAG,"Order Time " + ticketInformations.get(i).getOrder_time());
                     }
-                }
-                } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-               // Log.d(TAG,"Passenger in adpter" + ticketInformations.get(0).getPassanger(0).getPassengername());
                     adapter = new SavedReservationAdapter(ticketInformations, new SavedReservationAdapter.onItemClickedListener() {
                         @Override
                         public void onItemClicked(TicketInformation ticketInformation) {
@@ -70,6 +64,14 @@ public class SaveReservationFragment extends Fragment {
                         }
                     });
                     recyclerView.setAdapter(adapter);
+                }
+                } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+               // Log.d(TAG,"Passenger in adpter" + ticketInformations.get(0).getPassanger(0).getPassengername());
+
             }
 
         });

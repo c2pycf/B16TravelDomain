@@ -1,6 +1,7 @@
 package com.example.fang.b16traveldomain.ticketconfirmation;
 
 import android.os.Build;
+import android.util.Log;
 
 import com.example.fang.b16traveldomain.model.Coupon;
 import com.example.fang.b16traveldomain.model.TicketInformation;
@@ -83,6 +84,7 @@ public class TicketDetailPresenter implements TicketDetailContract.TicketDetailP
         LocalDateTime dateTime =null;
         if(mTicketInformation.getOrder_time()==null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                Log.d(TAG,"Setting order_time");
                 dateTime = LocalDateTime.now();
                 FormatStyle formatStyle = FormatStyle.MEDIUM;
                 DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(formatStyle, formatStyle);

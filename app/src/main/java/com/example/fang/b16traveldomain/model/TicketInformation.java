@@ -45,7 +45,7 @@ public class TicketInformation implements Serializable {
 
 
     public TicketInformation() {
-        List<Passenger> passengers = new ArrayList<>();
+        this.passengers = new ArrayList<>();
     }
 
     public void setPassengers(List<Passenger> passengers) {

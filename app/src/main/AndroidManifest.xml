@@ -17,16 +17,17 @@
         tools:replace="android:appComponentFactory">
         <activity android:name=".routeActivity.RouteActivity" />
         <activity android:name=".ticketconfirmation.TicketDetailActivity">
+        </activity>
+        <activity android:name=".registration.RegistrationActivity" />
+        <activity android:name=".homePage.HomePageActivity" />
+        <activity android:name=".seatsavailable.SeatsAvailableActivity"></activity>
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".registration.RegistrationActivity" />
-        <activity android:name=".homePage.HomePageActivity" />
-        <activity android:name=".seatsavailable.SeatsAvailableActivity"></activity>
-        <activity android:name=".MainActivity" />
         <activity android:name=".paymentgateway.PaymentActivity" />
         <activity android:name=".bussearch.BusSearchActivity"></activity>
         <activity
@@ -34,7 +35,8 @@
             android:label="@string/title_activity_home_page_activitywith_navigation"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".orderconfirmed.OrderConfirmedActivity" />
-        <activity android:name=".passengerinformation.PassengerInformationActivity"/>
+        <activity android:name=".passengerinformation.PassengerInformationActivity">
+        </activity>
     </application>
 
 </manifest>
