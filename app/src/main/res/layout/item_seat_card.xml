@@ -7,7 +7,8 @@
     <RelativeLayout
         android:id="@+id/rl_toggles"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp">
 
         <ToggleButton
             android:id="@+id/tb_seat_0"
@@ -201,6 +202,4 @@
 
 
     </RelativeLayout>
-
-
 </android.support.v7.widget.CardView>
