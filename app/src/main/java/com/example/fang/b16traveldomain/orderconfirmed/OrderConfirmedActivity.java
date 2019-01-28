@@ -176,7 +176,8 @@ public class OrderConfirmedActivity extends AppCompatActivity implements OrderCo
 
     @Override
     public void showHomePage() {
-
+        Intent intent = new Intent(OrderConfirmedActivity.this, HomePageActivitywithNavigation.class);
+        startActivity(intent);
     }
 
     @Override
