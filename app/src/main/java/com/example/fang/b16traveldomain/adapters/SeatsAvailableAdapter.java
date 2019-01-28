@@ -19,6 +19,8 @@ import com.example.fang.b16traveldomain.MainActivity;
 import com.example.fang.b16traveldomain.R;
 import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
 import com.example.fang.b16traveldomain.model.dataresource.seatinformation.Seat;
+import com.example.fang.b16traveldomain.passengerinformation.PassengerInformationActivity;
+import com.example.fang.b16traveldomain.seatsavailable.SeatsAvailableActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,7 @@ public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAd
     static List<String> seatsReserved;
     BusInformation busInformation;
     List<Double> total;
-
+    static private String BUS_INFORMATION_TAG = "bus_infor";
     private static final String TAG_SEATS = SeatsAvailableAdapter.class.getSimpleName();
 
     public SeatsAvailableAdapter(Context context, List<Seat> seatList, BusInformation busInformation) {
@@ -51,7 +53,7 @@ public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final SeatViewHolder seatViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final SeatViewHolder seatViewHolder, final int i) {
 
         //create method that call each seat method dynamically
        /* Object seat = seatList.get(0);
@@ -382,9 +384,12 @@ public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAd
             @Override
             public void onClick(View v) {
                Intent intent;
-               intent = new Intent(); //context to next activity
+               intent = new Intent(context,PassengerInformationActivity.class); //context to next activity
                 //intent.
-               //intent.putExtra("bus",busInformation);
+               intent.putExtra(BUS_INFORMATION_TAG,busInformation);
+               intent.putStringArrayListExtra("seats",(ArrayList<String>) seatsReserved);
+               context.startActivity(intent);
+
             }
         });
 

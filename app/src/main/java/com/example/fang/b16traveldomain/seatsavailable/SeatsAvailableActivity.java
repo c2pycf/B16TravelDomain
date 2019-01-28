@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.example.fang.b16traveldomain.R;
@@ -26,12 +27,19 @@ public class SeatsAvailableActivity extends AppCompatActivity implements SeatsAv
 
     SeatsAvailableAdapter mSeatsAvailableAdapter;
 
+    BusInformation mBusInformation;
+
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seats_available);
         ButterKnife.bind(this);
-
+        toolbar = findViewById(R.id.seat_available_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Select your seat");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupSeatAvailableMVP();
         getSeats();
         setupSeatsView();
@@ -73,8 +81,16 @@ public class SeatsAvailableActivity extends AppCompatActivity implements SeatsAv
           BusInformation busInformation = (BusInformation) getIntent().getSerializableExtra("bus");
           //String id = busInformation.getBusId();
           seatsAvailablePresenter.findSeats(busInformation);
+
+          mBusInformation = busInformation;
       }
 
+    }
+
+    @Override
+    public boolean onNavigateUp() {
+        finish();
+        return true;
     }
 }
 
