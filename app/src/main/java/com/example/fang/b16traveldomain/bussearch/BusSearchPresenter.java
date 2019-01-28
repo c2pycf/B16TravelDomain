@@ -52,17 +52,4 @@ public class BusSearchPresenter implements BusSearchContract.BusSearchPresenter 
         });
     }
 
-        /*Call<List<BusInformation>> call = getDataService.getBuses(routeId);
-        call.enqueue(new Callback<List<BusInformation>>() {
-            @Override
-            public void onResponse(Call<List<BusInformation>> call, Response<List<BusInformation>> response) {
-                Log.e(TAG, "onResponse: " + response.body() );
-            }
-
-            @Override
-            public void onFailure(Call<List<BusInformation>> call, Throwable t) {
-                Log.e(TAG, "onFailure: " + t.getMessage() );
-
-            }
-        });*/
 }

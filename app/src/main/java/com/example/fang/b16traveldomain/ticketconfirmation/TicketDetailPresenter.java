@@ -1,10 +1,17 @@
-package com.example.fang.b16traveldomain.ticketConfirmation;
+package com.example.fang.b16traveldomain.ticketconfirmation;
+
+import android.os.Build;
 
 import com.example.fang.b16traveldomain.model.Coupon;
 import com.example.fang.b16traveldomain.model.TicketInformation;
+import com.example.fang.b16traveldomain.model.dataresource.TicketInforDataResource;
+import com.example.fang.b16traveldomain.model.dataresource.TicketInforRepository;
 import com.example.fang.b16traveldomain.network.GetDataService;
 import com.example.fang.b16traveldomain.network.RetrofitClientInstance;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
 
 import retrofit2.Call;
@@ -19,11 +26,14 @@ public class TicketDetailPresenter implements TicketDetailContract.TicketDetailP
     private GetDataService mDataService;
     private TicketInformation mTicketInformation;
     static private final String TAG = TicketDetailPresenter.class.getSimpleName();
+    private TicketInforDataResource ticketInforDataResource;
+    private String couponRate = "0";
 
     public TicketDetailPresenter(TicketDetailActivity activity) {
         this.mView = activity;
         mRetrofit = RetrofitClientInstance.getInstance();
         mDataService = mRetrofit.create(GetDataService.class);
+        ticketInforDataResource = new TicketInforRepository(activity.getApplication());
         //Connect to local db
     }
 
@@ -36,28 +46,26 @@ public class TicketDetailPresenter implements TicketDetailContract.TicketDetailP
             public void onResponse(Call<List<Coupon>> call, Response<List<Coupon>> response) {
                 List<Coupon> coupons= response.body();
                 if(coupons !=null) {
-                    String couponRate = coupons.get(0).getDiscount();
-                    proceedToPayment(couponRate,mTicketInformation);
+                    couponRate = coupons.get(0).getDiscount();
+                    mView.showToast("Coupon applied");
+                    //proceedToPayment(mTicketInformation);
                 }
                 else {
                     mView.showToast("Coupon invalid");
                 }
 
-
-
             }
 
             @Override
             public void onFailure(Call<List<Coupon>> call, Throwable t) {
-                //@amani- could not build project because of onFailure missing
-
+                mView.showToast(t.getMessage());
             }
         });
 
     }
 
     @Override
-    public void proceedToPayment(String couponRate, TicketInformation ticketInformation) {
+    public void proceedToPayment( TicketInformation ticketInformation) {
 //        float fare = Float.parseFloat(mTicketInformation.getFare());
 //        float rate = Float.parseFloat(couponRate);
 //        float newFareFloat = fare*(100-rate)/100;
@@ -72,6 +80,25 @@ public class TicketDetailPresenter implements TicketDetailContract.TicketDetailP
     public void saveReservation(TicketInformation ticketInformation) {
         //save ticket information
         mTicketInformation = ticketInformation;
+        LocalDateTime dateTime =null;
+        if(mTicketInformation.getOrder_time()==null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                dateTime = LocalDateTime.now();
+                FormatStyle formatStyle = FormatStyle.MEDIUM;
+                DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(formatStyle, formatStyle);
+                String orderTime = dateTime.format(formatter);
+                mTicketInformation.setOrder_time(orderTime);
+            }
+            //insert new row
+            ticketInforDataResource.saveTicketInfor(mTicketInformation);
+            mView.showToast("Reservation information saved");
+        }
+        else {
+            //update ticket
+            ticketInforDataResource.updateTicketInfor(mTicketInformation);
+            mView.showToast("Reservation information updated");
+        }
+
 
     }
 }
