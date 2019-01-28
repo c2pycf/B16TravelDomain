@@ -85,6 +85,8 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
 
     NumberFormat format;
 
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +97,11 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
         format = NumberFormat.getCurrencyInstance();
 
         mPresenter = new TicketDetailPresenter(this);
+
+        toolbar = findViewById(R.id.ticket_detail_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.title_ticket_confirmation);
         //get ticket information from previous activity
         if (getTicketInformation() != null) {
             ticketInformation = getTicketInformation();
@@ -164,7 +171,7 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
         Log.d(TAG, "Button clicked");
         switch (view.getId()) {
             case R.id.bt_proceed_for_payment:
-                if(cbCredit.isChecked()) {
+                if (cbCredit.isChecked()) {
                     mPresenter.proceedToPayment(ticketInformation);
                 } else {
                     showToast("No credit method selected");

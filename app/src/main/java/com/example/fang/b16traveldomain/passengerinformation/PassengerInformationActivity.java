@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,7 @@ public class PassengerInformationActivity extends AppCompatActivity implements P
     RecyclerView recyclerView;
     PassengerInformationPresenter mPresenter;
     Button btConfirm;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,10 @@ public class PassengerInformationActivity extends AppCompatActivity implements P
                 mPresenter.showConfirmPage();
             }
         });
+        toolbar = findViewById(R.id.passenger_information_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.title_passenger_infor);
 
     }
 

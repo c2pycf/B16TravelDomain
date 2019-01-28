@@ -70,6 +70,9 @@ public class OrderConfirmedActivity extends AppCompatActivity implements OrderCo
     NumberFormat format;
 
     OrderConfirmedPresenter mPresenter;
+
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +80,10 @@ public class OrderConfirmedActivity extends AppCompatActivity implements OrderCo
         format = NumberFormat.getCurrencyInstance();
         ButterKnife.bind(this);
         mPresenter = new OrderConfirmedPresenter(this);
+        toolbar = findViewById(R.id.order_confirm_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.title_order_confirmed);
         getTicketInformation();
         setUpViews();
         setUpTime();
@@ -108,7 +115,7 @@ public class OrderConfirmedActivity extends AppCompatActivity implements OrderCo
         String fare_taxed = format.format(fareDouble * tax);
         tvAppDiscount.setText(appDiscount_calculated);
         tvServiceTax.setText(fare_taxed);
-        String totalFare = format.format(fareDouble * (1+ tax - appDiscount));
+        String totalFare = format.format(fareDouble * (1 + tax - appDiscount));
         ticketInformation.setFare(totalFare);
         tvTotal.setText(totalFare);
     }
@@ -125,6 +132,12 @@ public class OrderConfirmedActivity extends AppCompatActivity implements OrderCo
 
     @Override
     public void showHomePage() {
+
+    }
+
+    @Override
+    public boolean onNavigateUp() {
+        return true;
 
     }
 }
