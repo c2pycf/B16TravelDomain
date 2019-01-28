@@ -80,6 +80,7 @@
         android:layout_marginStart="5dp"
         android:layout_gravity="center"
         android:text="@string/bt_home"
-        android:id="@+id/bt_order_confirm_home"/>
+        android:id="@+id/bt_order_confirm_home"
+        style="@style/AppTheme.Button"/>
 
 </LinearLayout>

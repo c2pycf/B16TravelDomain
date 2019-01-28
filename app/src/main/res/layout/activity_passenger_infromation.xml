@@ -39,7 +39,8 @@
         android:id="@+id/bt_passenger_confirmed"
         android:text="@string/confirm"
         android:layout_gravity="center"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        style="@style/AppTheme.Button"/>
 </LinearLayout>
 
 </ScrollView>

@@ -81,6 +81,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/bt_check_out"
         android:text="@string/bt_billing_check_out"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        style="@style/AppTheme.Button"/>
 
 </LinearLayout>

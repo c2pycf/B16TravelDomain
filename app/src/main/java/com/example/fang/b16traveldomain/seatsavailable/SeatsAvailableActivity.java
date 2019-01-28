@@ -88,7 +88,7 @@ public class SeatsAvailableActivity extends AppCompatActivity implements SeatsAv
     }
 
     @Override
-    public boolean onNavigateUp() {
+    public boolean onSupportNavigateUp() {
         finish();
         return true;
     }
