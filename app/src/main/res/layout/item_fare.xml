@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="16dp"
+        android:background="#E4DFDF"
+        android:orientation="horizontal"
+        android:layout_below="@+id/recylcer_View_seat">
+
+        <TextView
+            android:id="@+id/tv_seat_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Amount"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_total_seats_fare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_toRightOf="@+id/tv_seat_amount"
+            android:hint="fare" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_seat_amount"
+            android:layout_marginLeft="15dp"
+            android:text="Seat no:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_seats_selected"
+            android:layout_width="82dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_total_seats_fare"
+            android:layout_marginLeft="100dp"
+            android:hint="seats" />
+
+        <ImageButton
+            android:id="@+id/buttonNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="39dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/icons8_chevron_right_64" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

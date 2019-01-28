@@ -61,9 +61,10 @@ public class BusSearchAdapter extends RecyclerView.Adapter<BusSearchAdapter.BusV
             int pos = getAdapterPosition();
             BusInformation mBus = busInformationList.get(pos);
             String busId = mBus.getBusId();
-            Log.e(TAG, "onClick: " + mBus.getBusId() );
-            mListener.onBusClicked(busId);
+            Log.e(TAG, "onClick: " + mBus.getBusId() + " fare is " + mBus.getFare());
+            mListener.onBusClicked(mBus);
             //pass bus id in intent to select seat
+
 
         }
     }
