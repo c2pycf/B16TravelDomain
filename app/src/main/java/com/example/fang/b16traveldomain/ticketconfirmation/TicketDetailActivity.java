@@ -213,4 +213,9 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
 
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
 }
