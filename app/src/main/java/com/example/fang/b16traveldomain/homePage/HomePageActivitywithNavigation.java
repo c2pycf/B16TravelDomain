@@ -1,4 +1,4 @@
-package com.example.fang.b16traveldomain.HomePage;
+package com.example.fang.b16traveldomain.homePage;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.fang.b16traveldomain.R;
+import com.example.fang.b16traveldomain.savereservation.SaveReservationFragment;
 
 public class HomePageActivitywithNavigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,7 +43,12 @@ public class HomePageActivitywithNavigation extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-    }
+
+            //Fragment implementaion
+
+
+
+        }
 
     @Override
     public void onBackPressed() {
@@ -82,11 +88,15 @@ public class HomePageActivitywithNavigation extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_sign_in) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_book_route) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_saved_reservation) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, new SaveReservationFragment())
+                    .addToBackStack(null)
+                    .commit();
 
         } else if (id == R.id.nav_manage) {
 

@@ -13,8 +13,12 @@ public interface PaymentContract {
     }
 
     interface PaymentPresenter{
-        void proceedPayment(Card card, TicketInformation ticketInformation);
+        void proceedPayment(Card card);
 
-        void proceedOrder(TicketInformation ticketInformation);
+        void proceedOrder();
+
+        void reserveSeats(String url);
+
+        String reserveSeatsApi();
     }
 }

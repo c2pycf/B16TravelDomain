@@ -1,16 +1,14 @@
-package com.example.fang.b16traveldomain.HomePage;
+package com.example.fang.b16traveldomain.homePage;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Objects;
 
-public class cityModelList {
+public class CityModelList {
     @SerializedName("city")
     List<CityModel> cityModelList;
 
-    public cityModelList(List<CityModel> cityModelList) {
+    public CityModelList(List<CityModel> cityModelList) {
         this.cityModelList = cityModelList;
     }
 

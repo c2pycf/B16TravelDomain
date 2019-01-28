@@ -1,31 +1,66 @@
 package com.example.fang.b16traveldomain.model;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+@Entity(tableName = "ticket_information")
 public class TicketInformation implements Serializable {
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "order_time")
+    String order_time;
+    @ColumnInfo(name = "route_name")
     String route_name;
+    @ColumnInfo(name = "busid")
     String busid;
+    @ColumnInfo(name = "fare")
     String fare;
+    @ColumnInfo(name = "coupondiscount")
     String coupondiscount;
+    @ColumnInfo(name = "servicetax")
     String servicetax;
+    @ColumnInfo(name = "journydate")
     String journydate;
+    @ColumnInfo(name = "boardingtime")
     String boardingtime;
+    @ColumnInfo(name = "droppingtime")
     String droppingtime;
+    @ColumnInfo(name = "duration")
     String duration;
+    @ColumnInfo(name = "passengerid")
     String passengerid;
+    @ColumnInfo(name = "passengeremail")
     String passengeremail;
+    @ColumnInfo(name = "passengermobile")
     String passengermobile;
-    String selectedseat;
-    String passengername;
-    String passengerage;
-    String passengergender;
+    @Ignore
+    List<Passenger> passengers;
+
 
     public TicketInformation() {
+        this.passengers = new ArrayList<>();
     }
 
-    public TicketInformation(String route_name, String busid, String fare, String coupondiscount, String servicetax, String journydate, String boardingtime, String droppingtime, String duration, String passengerid, String passengeremail, String passengermobile, String selectedseat, String passengername, String passengerage, String passengergender) {
+    public void setPassengers(List<Passenger> passengers) {
+        this.passengers = passengers;
+    }
+
+    public String getOrder_time() {
+        return order_time;
+    }
+
+    public void setOrder_time(String order_time) {
+        this.order_time = order_time;
+    }
+
+    public TicketInformation(String route_name, String busid, String fare, String coupondiscount, String servicetax, String journydate, String boardingtime, String droppingtime, String duration, String passengerid, String passengeremail, String passengermobile) {
         this.route_name = route_name;
         this.busid = busid;
         this.fare = fare;
@@ -39,10 +74,7 @@ public class TicketInformation implements Serializable {
         this.passengerid = passengerid;
         this.passengeremail = passengeremail;
         this.passengermobile = passengermobile;
-        this.selectedseat = selectedseat;
-        this.passengername = passengername;
-        this.passengerage = passengerage;
-        this.passengergender = passengergender;
+        List<Passenger> passengers = new ArrayList<>();
     }
 
     public String getRoute_name() {
@@ -141,36 +173,20 @@ public class TicketInformation implements Serializable {
         this.passengermobile = passengermobile;
     }
 
-    public String getSelectedseat() {
-        return selectedseat;
+    public void addPassanger(Passenger passenger){
+        passengers.add(passenger);
     }
 
-    public void setSelectedseat(String selectedseat) {
-        this.selectedseat = selectedseat;
+    public Passenger getPassanger(int i){
+        return passengers.get(i);
     }
 
-    public String getPassengername() {
-        return passengername;
+    public List<Passenger> getPassengers(){
+        return passengers;
     }
 
-    public void setPassengername(String passengername) {
-        this.passengername = passengername;
-    }
-
-    public String getPassengerage() {
-        return passengerage;
-    }
-
-    public void setPassengerage(String passengerage) {
-        this.passengerage = passengerage;
-    }
-
-    public String getPassengergender() {
-        return passengergender;
-    }
-
-    public void setPassengergender(String passengergender) {
-        this.passengergender = passengergender;
+    public int getPassangerSize(){
+        return passengers.size();
     }
 
     @NonNull

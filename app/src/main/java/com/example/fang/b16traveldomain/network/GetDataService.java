@@ -1,5 +1,7 @@
 package com.example.fang.b16traveldomain.network;
 
+
+import com.example.fang.b16traveldomain.model.ApiResponseMsg;
 import com.example.fang.b16traveldomain.model.Coupon;
 import com.example.fang.b16traveldomain.model.TicketInformation;
 import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformationResponse;
@@ -14,6 +16,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
 
 public interface GetDataService {
 
@@ -30,7 +33,10 @@ public interface GetDataService {
 
     //response for api 7 (seat search by bus id)
     @GET("seatinfo.php?")
-    Call<Seats> getBusSeats(@Query("busid") String busid);
+    Call<Seats> getBusSeats(@Query("busid") String busid);//reserve the seat
+    @GET
+    Call<ApiResponseMsg> reserveSeats(@Url String url);
+
 
 
 }

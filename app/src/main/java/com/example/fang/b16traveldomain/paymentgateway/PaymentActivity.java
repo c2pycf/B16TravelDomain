@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.fang.b16traveldomain.R;
 import com.example.fang.b16traveldomain.model.TicketInformation;
+import com.example.fang.b16traveldomain.orderconfirmed.OrderConfirmedActivity;
 import com.stripe.android.model.Card;
 import com.stripe.android.view.CardMultilineWidget;
 
@@ -35,51 +37,55 @@ public class PaymentActivity extends AppCompatActivity implements PaymentContrac
 
     private TicketInformation ticketInformation;
 
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         ButterKnife.bind(this);
-        mPresenter = new PaymentPresenter(this);
         getTicketInfor();
+        mPresenter = new PaymentPresenter(this, ticketInformation);
+        toolbar = findViewById(R.id.payment_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.title_payment);
 
     }
 
     private void getTicketInfor() {
-        if(getIntent().getSerializableExtra(TICKET_INFORMATION_TAG)!=null) {
+        if (getIntent().getSerializableExtra(TICKET_INFORMATION_TAG) != null) {
             ticketInformation = (TicketInformation) getIntent().getSerializableExtra(TICKET_INFORMATION_TAG);
-            Log.d(TAG,ticketInformation.getBusid());
+            Log.d(TAG, ticketInformation.getDuration());
         }
     }
 
     @Override
     public void createCard() {
         card = cardInput.getCard();
-        if(card!=null) {
+        if (card != null) {
 
-            if(!card.validateNumber()){
+            if (!card.validateNumber()) {
                 this.showToast("Card number invalid!");
-            }
-            else if (!card.validateExpMonth()){
+            } else if (!card.validateExpMonth()) {
                 this.showToast("Card month invalid!");
-            }
-            else if(!card.validateExpiryDate()){
+            } else if (!card.validateExpiryDate()) {
                 this.showToast("Card date invalid!");
-            }
-            else {
-                mPresenter.proceedPayment(card,ticketInformation);
+            } else {
+                mPresenter.proceedPayment(card);
             }
         }
     }
+
     @Override
     public void showToast(String msg) {
-        Snackbar.make(btCheckOut,msg,Snackbar.LENGTH_LONG).show();
+        Snackbar.make(btCheckOut, msg, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void showConfirmedActivity() {
-        Intent intent = new Intent();
-        intent.putExtra(TICKET_INFORMATION_TAG,ticketInformation);
+        Intent intent = new Intent(PaymentActivity.this, OrderConfirmedActivity.class);
+        intent.putExtra(TICKET_INFORMATION_TAG, ticketInformation);
         startActivity(intent);
     }
 

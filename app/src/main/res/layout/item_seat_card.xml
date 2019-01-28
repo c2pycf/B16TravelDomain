@@ -145,7 +145,6 @@
 
 
     </RelativeLayout>
-
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -170,6 +169,7 @@
             android:layout_marginLeft="35dp"
             android:layout_toRightOf="@+id/tv_seat_amount"
             android:hint="fare" />
+
 
         <TextView
             android:layout_width="wrap_content"
