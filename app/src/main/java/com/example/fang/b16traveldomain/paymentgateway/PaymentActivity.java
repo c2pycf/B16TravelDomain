@@ -93,4 +93,10 @@ public class PaymentActivity extends AppCompatActivity implements PaymentContrac
     public void onViewClicked() {
         createCard();
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return false;
+    }
 }

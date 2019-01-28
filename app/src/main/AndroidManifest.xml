@@ -22,11 +22,6 @@
         <activity android:name=".homePage.HomePageActivity" />
         <activity android:name=".seatsavailable.SeatsAvailableActivity"></activity>
         <activity android:name=".MainActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".paymentgateway.PaymentActivity" />
         <activity android:name=".bussearch.BusSearchActivity"></activity>
@@ -36,6 +31,11 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".orderconfirmed.OrderConfirmedActivity" />
         <activity android:name=".passengerinformation.PassengerInformationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
