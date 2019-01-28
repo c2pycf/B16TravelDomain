@@ -34,4 +34,20 @@
     <string name="order_time">Reservation time:</string>
     <string name="bt_home">HomePage</string>
     <string name="apply">Apply</string>
+    <string name="passenger_contact_title">Passenger contact</string>
+    <string name="passenger_mail">Enter your email</string>
+    <string name="passenger_mobile">Enter you phone number</string>
+    <string name="passenger_detail_title">Passenger detail</string>
+    <string name="passenger_name">Enter passenger name</string>
+    <string name="passenger_age">Age</string>
+    <string name="passenger_gender_male">Male</string>
+    <string name="passenger_gender_female">Female</string>
+    <string name="confirm">Confirm</string>
+    <string name="sign_in">Sign in</string>
+    <string name="book_bus">Reserve your trip</string>
+    <string name="saved_reservation">Your saved reservation</string>
+    <string name="title_passenger_infor">Passenger Informations</string>
+    <string name="title_payment">Credit Payment</string>
+    <string name="title_ticket_confirmation">Ticket Confirmation</string>
+    <string name="title_order_confirmed">Order Confirmed</string>
 </resources>

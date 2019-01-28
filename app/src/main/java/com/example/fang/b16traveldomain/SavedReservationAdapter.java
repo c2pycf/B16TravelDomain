@@ -18,9 +18,16 @@ import butterknife.ButterKnife;
 
 public class SavedReservationAdapter extends RecyclerView.Adapter {
     List<TicketInformation> ticketInformations;
+    private onItemClickedListener  mListener;
 
-    public SavedReservationAdapter(List<TicketInformation> ticketInformations) {
+
+    public interface onItemClickedListener{
+        void onItemClicked(TicketInformation ticketInformation);
+    }
+
+    public SavedReservationAdapter(List<TicketInformation> ticketInformations, onItemClickedListener listener) {
         this.ticketInformations = ticketInformations;
+        mListener = listener;
     }
 
     @NonNull
@@ -34,12 +41,13 @@ public class SavedReservationAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         SavedReservationViewHolder viewHolder1 = (SavedReservationViewHolder) viewHolder;
         TicketInformation ticketInformation = ticketInformations.get(i);
-        viewHolder1.tvReserveTime.setText(ticketInformation.getJournydate());
+        //viewHolder1.tvReserveTime.setText(ticketInformation.getJournydate());
         viewHolder1.tvStartTime.setText(ticketInformation.getBoardingtime());
         viewHolder1.tvEndTime.setText(ticketInformation.getDroppingtime());
         viewHolder1.tvSaveAt.setText(ticketInformation.getOrder_time());
         NumberFormat format = NumberFormat.getIntegerInstance();
         viewHolder1.tvPassengerNo.setText(format.format(ticketInformation.getPassangerSize()));
+        viewHolder1.setItemListener(ticketInformation,mListener);
     }
 
     public TicketInformation getTicketPosition(int position){
@@ -74,6 +82,16 @@ public class SavedReservationAdapter extends RecyclerView.Adapter {
              tvPassengerNo = itemView.findViewById(R.id.tv_passenger_no);
 
             tvSaveAt = itemView.findViewById(R.id.tv_save_at);
+
+        }
+
+        void setItemListener(final TicketInformation ticketInformation, final onItemClickedListener itemClickedListener){
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    itemClickedListener.onItemClicked(ticketInformation);
+                }
+            });
 
         }
     }
