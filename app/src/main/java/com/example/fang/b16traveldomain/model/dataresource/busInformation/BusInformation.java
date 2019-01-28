@@ -1,11 +1,13 @@
 package com.example.fang.b16traveldomain.model.dataresource.busInformation;
 
 import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 /*
 PoJO class (API 6 - find route by bus id)
  */
 
-public class BusInformation {
+public class BusInformation implements Serializable {
 
     @SerializedName("busid")
     String busId;
@@ -22,8 +24,7 @@ public class BusInformation {
    @SerializedName("journyduration")
     String journeyDuration;
 
-    @SerializedName("Fare")
-
+    @SerializedName("fare")
     String fare;
 
     @SerializedName("boardingtime")
