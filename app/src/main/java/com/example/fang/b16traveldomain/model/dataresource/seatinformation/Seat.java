@@ -2,6 +2,8 @@ package com.example.fang.b16traveldomain.model.dataresource.seatinformation;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.lang.reflect.Method;
+
 public class Seat {
     @SerializedName("id")
     String seatId;
@@ -54,6 +56,9 @@ public class Seat {
         this.seat8 = seat8;
         this.seat9 = seat9;
         this.seat10 = seat10;
+    }
+
+    public Seat() {
     }
 
     public String getSeatId() {
@@ -151,4 +156,7 @@ public class Seat {
     public void setSeat10(String seat10) {
         this.seat10 = seat10;
     }
+
+
+
 }

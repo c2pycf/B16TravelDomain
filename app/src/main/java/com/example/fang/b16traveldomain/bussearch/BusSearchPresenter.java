@@ -28,7 +28,6 @@ public class BusSearchPresenter implements BusSearchContract.BusSearchPresenter 
 
     @Override
     public void searchBus(String routeId) {
-        routeId ="2";
         Call<BusInformationResponse> call = getDataService.getBuses(routeId);
         call.enqueue(new Callback<BusInformationResponse>() {
             @Override

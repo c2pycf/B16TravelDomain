@@ -2,6 +2,7 @@ package com.example.fang.b16traveldomain.savereservation;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.example.fang.b16traveldomain.R;
 import com.example.fang.b16traveldomain.SavedReservationAdapter;
 import com.example.fang.b16traveldomain.model.TicketInformation;
+import com.example.fang.b16traveldomain.passengerinformation.PassengerInformationActivity;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -27,9 +29,11 @@ import java.util.concurrent.ExecutionException;
 public class SaveReservationFragment extends Fragment {
 
     static private final String TAG = SaveReservationFragment.class.getSimpleName();
+    static private String TICKET_INFORMATION_TAG = "ticket_information";
     SaveReservationViewHolder saveReservationViewHolder;
     RecyclerView recyclerView;
     SavedReservationAdapter adapter;
+
 
     public SaveReservationFragment() {
     }
@@ -51,7 +55,15 @@ public class SaveReservationFragment extends Fragment {
                     for (int i = 0; i < ticketInformations.size(); i++) {
                         ticketInformations.get(i).setPassengers(saveReservationViewHolder.getPassengers(ticketInformations.get(i).getOrder_time()));
                         Log.d(TAG,"Passenger " + ticketInformations.get(i).getPassanger(0).getPassengername());
+                        Log.d(TAG,"Order Time " + ticketInformations.get(i).getOrder_time());
                     }
+                    adapter = new SavedReservationAdapter(ticketInformations, new SavedReservationAdapter.onItemClickedListener() {
+                        @Override
+                        public void onItemClicked(TicketInformation ticketInformation) {
+                            showPassengerInformationPage(ticketInformation);
+                        }
+                    });
+                    recyclerView.setAdapter(adapter);
                 }
                 } catch (ExecutionException e) {
                         e.printStackTrace();
@@ -59,9 +71,9 @@ public class SaveReservationFragment extends Fragment {
                         e.printStackTrace();
                     }
                // Log.d(TAG,"Passenger in adpter" + ticketInformations.get(0).getPassanger(0).getPassengername());
-                    adapter = new SavedReservationAdapter(ticketInformations);
-                    recyclerView.setAdapter(adapter);
+
             }
+
         });
         getActivity().setTitle("Save");
 
@@ -84,6 +96,7 @@ public class SaveReservationFragment extends Fragment {
                         // Delete the word
                         saveReservationViewHolder.delete(ticketInformation);
                     }
+
                 }
         );
         itemTouchHelper.attachToRecyclerView(recyclerView);
@@ -91,8 +104,16 @@ public class SaveReservationFragment extends Fragment {
 
     }
 
+    private void showPassengerInformationPage(TicketInformation ticketInformation) {
+        Intent intent =  new Intent(getContext(), PassengerInformationActivity.class);
+        intent.putExtra(TICKET_INFORMATION_TAG,ticketInformation);
+        startActivity(intent);
+
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
     }
 }

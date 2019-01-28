@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.fang.b16traveldomain.R;
+import com.example.fang.b16traveldomain.savereservation.SaveReservationFragment;
 import com.example.fang.b16traveldomain.singleSignOn.SingleSignOnActivity;
 
 public class HomePageActivitywithNavigation extends AppCompatActivity
@@ -95,13 +96,17 @@ public class HomePageActivitywithNavigation extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_login) {
+        if (id == R.id.nav_sign_in) {
             Intent intent = new Intent(HomePageActivitywithNavigation.this, SingleSignOnActivity.class);
 
             startActivity(intent);
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_book_route) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_saved_reservation) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, new SaveReservationFragment())
+                    .addToBackStack(null)
+                    .commit();
 
         } else if (id == R.id.nav_manage) {
 

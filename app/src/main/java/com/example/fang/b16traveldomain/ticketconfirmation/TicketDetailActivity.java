@@ -85,6 +85,8 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
 
     NumberFormat format;
 
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +97,11 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
         format = NumberFormat.getCurrencyInstance();
 
         mPresenter = new TicketDetailPresenter(this);
+
+        toolbar = findViewById(R.id.ticket_detail_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.title_ticket_confirmation);
         //get ticket information from previous activity
         if (getTicketInformation() != null) {
             ticketInformation = getTicketInformation();
@@ -125,6 +132,12 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
 
     private void setUI() {
         //time UI data
+//        String date = ticketInformation.getJournydate();
+//        String dates[] = date.split("/s");
+//        tvWeekDateCard.setText(dates[0]);
+//        tvDateDateCard.setText(dates[1]);
+//        tvMonthDateCard.setText(dates[2]);
+
         tvDepDateCard.setText(ticketInformation.getBoardingtime());
         tvArrDateCard.setText(ticketInformation.getDroppingtime());
         tvDurationDateCard.setText(ticketInformation.getDuration());
@@ -158,7 +171,7 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
         Log.d(TAG, "Button clicked");
         switch (view.getId()) {
             case R.id.bt_proceed_for_payment:
-                if(cbCredit.isChecked()) {
+                if (cbCredit.isChecked()) {
                     mPresenter.proceedToPayment(ticketInformation);
                 } else {
                     showToast("No credit method selected");
@@ -200,4 +213,9 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
 
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
 }

@@ -13,7 +13,7 @@ import com.example.fang.b16traveldomain.model.TicketInformation;
 
 
 
-@Database(entities = {TicketInformation.class, Passenger.class},version = 1)
+@Database(entities = {TicketInformation.class, Passenger.class},version = 10)
 public abstract class TravelDatabase extends RoomDatabase {
     public abstract PassengerDAO passengerDAO();
 

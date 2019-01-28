@@ -30,8 +30,18 @@ public class UserDataSource implements UserRepository{
     }
 
     @Override
-    public void getDate() {
-        mLocalUserResource.getDate();;
+    public String getDate() {
+        return mLocalUserResource.getDate();
 
+    }
+
+    @Override
+    public void saveRoute(String route) {
+        mLocalUserResource.saveRoute(route);
+    }
+
+    @Override
+    public String getRoute() {
+        return mLocalUserResource.getRoute();
     }
 }
