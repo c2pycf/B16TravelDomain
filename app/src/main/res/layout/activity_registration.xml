@@ -12,11 +12,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="118dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="94dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="enter first name" />
+        android:hint="enter first name"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/et_lastname"
@@ -24,11 +24,11 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/et_firstname"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="94dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="160dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Enter Last Name" />
+        android:hint="Enter Last Name"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/et_address"
@@ -36,10 +36,11 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/et_lastname"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="162dp"
+        android:layout_marginTop="229dp"
+        android:layout_marginEnd="-2dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="enter address" />
+        android:hint="enter address"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/et_email"
@@ -47,11 +48,11 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/et_lastname"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="217dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="291dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="enter email" />
+        android:hint="enter email"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/et_mobile"
@@ -59,11 +60,11 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/et_lastname"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="-2dp"
-        android:layout_marginBottom="183dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="314dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="enter mobile" />
+        android:hint="enter mobile"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/et_password"
@@ -71,8 +72,8 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/et_lastname"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="-2dp"
-        android:layout_marginBottom="126dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="236dp"
         android:ems="10"
         android:hint="enter password"
         android:inputType="textPassword" />
@@ -83,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="115dp"
-        android:layout_marginBottom="67dp"
+        android:layout_marginEnd="165dp"
+        android:layout_marginBottom="104dp"
         android:text="Register" />
 </RelativeLayout>
