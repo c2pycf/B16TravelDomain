@@ -30,6 +30,8 @@ public class BusSearchActivity extends AppCompatActivity implements BusSearchCon
     BusSearchAdapter busSearchAdapter;
     private BusSearchPresenter mBusSearchPresenter;
 
+    String id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,10 @@ public class BusSearchActivity extends AppCompatActivity implements BusSearchCon
 
         getBusSearch();   //
         initToolBar();
+        //Intent from Route Activity
+        Intent intent = getIntent();
+        id = intent.getStringExtra("routeId");
+
     }
 
     @Override

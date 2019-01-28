@@ -3,6 +3,10 @@ package com.example.fang.b16traveldomain.homePage;
 import android.util.Log;
 
 import com.example.fang.b16traveldomain.network.RetrofitClientInstance;
+import com.example.fang.b16traveldomain.routeActivity.RouteApi;
+import com.example.fang.b16traveldomain.routeActivity.RouteContract;
+import com.example.fang.b16traveldomain.routeActivity.RouteList;
+import com.example.fang.b16traveldomain.routeActivity.RouteModel;
 
 import java.util.List;
 
@@ -17,10 +21,16 @@ public class HomePagePresenter implements  HomePageContract.HomeFragmentPresente
 
     HomePageContract.HomeFragmentView homeFragmentView ;
 
-    Retrofit retrofitClientInstance;
+    //Retrofit retrofitClientInstance;
     // = RetrofitClientInstance.getInstance();
 
     CityModelList cityModelList;
+    //RouteContract.RouteView routeView;
+    Retrofit retrofit;
+
+    RouteList route_List;
+
+    String  TAG = "HomePagePresenter";
 
 
 
@@ -29,7 +39,7 @@ public class HomePagePresenter implements  HomePageContract.HomeFragmentPresente
 
     public HomePagePresenter(HomePageFragment fragment) {
         this.homeFragmentView = fragment;
-        this.retrofitClientInstance = RetrofitClientInstance.getInstance();
+        this.retrofit = RetrofitClientInstance.getInstance();
     }
 
 
@@ -41,7 +51,7 @@ public class HomePagePresenter implements  HomePageContract.HomeFragmentPresente
     @Override
     public void getCity() {
 
-        Api api = retrofitClientInstance.create(Api.class);
+        Api api = retrofit.create(Api.class);
 
 
         Call<CityModelList> call = api.getCity();
@@ -77,6 +87,44 @@ public class HomePagePresenter implements  HomePageContract.HomeFragmentPresente
     public void getCityList() {
 
 
+
+    }
+
+    @Override
+    public void getRoute(String start_Lattitude, String  start_Longitude, String  destination_Lattitude, String  destination_Longitude) {
+        RouteApi routeApi = retrofit.create(RouteApi.class);
+        Log.e(TAG, "getRoute: "+ start_Lattitude+ " "+start_Longitude+ " "+destination_Lattitude + " "+destination_Longitude);
+
+        Call<RouteList> call = routeApi.getRoute(start_Lattitude, start_Longitude, destination_Lattitude, destination_Longitude);
+
+        call.enqueue(new Callback<RouteList>() {
+            @Override
+            public void onResponse(Call<RouteList> call, Response<RouteList> response) {
+                Log.e(TAG, "onResponse: of getRoute()"+response.body() );
+                if(response.body().getRouteModelList()!= null){
+                    Log.e(TAG, "onResponse: get route "+response.body().getRouteModelList().get(0).getRoute_startfrom() );
+                    //routeView.set_route(response.body().routeModelList);
+                    //homeFragmentView
+                    route_List = response.body();
+                    homeFragmentView.setRouteList(route_List);
+
+                }
+                else{
+                    Log.e(TAG, "onResponse: "+ "no route found" );
+                    homeFragmentView.displayMessege("no route found");
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<RouteList> call, Throwable t) {
+                Log.e(TAG, "onFailure: "+t.getMessage() );
+
+            }
+        });
+
+        //return route_List;
 
     }
 }

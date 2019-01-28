@@ -1,8 +1,10 @@
 package com.example.fang.b16traveldomain.homePage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.fang.b16traveldomain.R;
+import com.example.fang.b16traveldomain.singleSignOn.SingleSignOnActivity;
 
 public class HomePageActivitywithNavigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,6 +47,11 @@ public class HomePageActivitywithNavigation extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
             //Fragment implementaion
+
+        HomePageFragment homePageFragment = new HomePageFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.home_page_fragment_container, homePageFragment);
+        transaction.commit();
 
 
 
@@ -87,8 +95,10 @@ public class HomePageActivitywithNavigation extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
+        if (id == R.id.nav_login) {
+            Intent intent = new Intent(HomePageActivitywithNavigation.this, SingleSignOnActivity.class);
+
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

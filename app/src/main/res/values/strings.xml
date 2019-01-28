@@ -29,4 +29,8 @@
     <string name="hint_billing_state">State</string>
     <string name="hint_billing_zip">Zip code</string>
     <string name="bt_billing_check_out">Check out</string>
+
+    <string name="facebook_app_id">443261006447423</string>
+    <string name="fb_login_protocol_scheme">fb443261006447423</string>
+
 </resources>

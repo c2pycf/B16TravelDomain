@@ -43,4 +43,7 @@ dependencies {
     //Stripe
     implementation 'com.stripe:stripe-android:6.1.2'
 
+    //facebook single sign on
+    implementation 'com.facebook.android:facebook-login:[4,5)'
+
 }
