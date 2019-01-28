@@ -1,16 +1,21 @@
 package com.example.fang.b16traveldomain.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.example.fang.b16traveldomain.MainActivity;
 import com.example.fang.b16traveldomain.R;
 import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
 import com.example.fang.b16traveldomain.model.dataresource.seatinformation.Seat;
@@ -20,7 +25,7 @@ import java.util.List;
 
 import static android.support.constraint.Constraints.TAG;
 
-public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAdapter.SeatViewHolder> {
+public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAdapter.SeatViewHolder>  {
 
     Context context;
     List<Seat> seatList;
@@ -373,6 +378,16 @@ public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAd
             });
         }
 
+        seatViewHolder.imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent;
+               intent = new Intent(); //context to next activity
+                //intent.
+               //intent.putExtra("bus",busInformation);
+            }
+        });
+
     }//bindholder
 
 
@@ -385,6 +400,7 @@ public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAd
 
         ToggleButton tb0, tb1, tb2, tb3, tb4, tb5, tb6, tb7, tb8, tb9, tb10;
         TextView tvFare, tvSeats;
+        ImageButton imageButton;
 
         public SeatViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -400,6 +416,7 @@ public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAd
             tb9 = itemView.findViewById(R.id.tb_seat_9);
             tvFare = itemView.findViewById(R.id.tv_total_seats_fare);
             tvSeats = itemView.findViewById(R.id.tv_seats_selected);
+            imageButton = itemView.findViewById(R.id.buttonNext);
 
 
           /* for(int i=0 ; i < 10 ; i++){
