@@ -14,9 +14,12 @@ import android.view.View;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
+import com.example.fang.b16traveldomain.MainActivity;
 import com.example.fang.b16traveldomain.R;
 import com.example.fang.b16traveldomain.adapters.BusSearchAdapter;
+import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
 import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformationResponse;
+import com.example.fang.b16traveldomain.seatsavailable.SeatsAvailableActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +33,8 @@ public class BusSearchActivity extends AppCompatActivity implements BusSearchCon
     BusSearchAdapter busSearchAdapter;
     private BusSearchPresenter mBusSearchPresenter;
 
+    String id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +45,10 @@ public class BusSearchActivity extends AppCompatActivity implements BusSearchCon
         setupViews();   //setup linear layout to recycler view
         getBusSearch();   //
         initToolBar();
+        //Intent from Route Activity
+        Intent intent = getIntent();
+        id = intent.getStringExtra("routeId");
+
     }
 
     @Override
@@ -81,15 +90,19 @@ public class BusSearchActivity extends AppCompatActivity implements BusSearchCon
 
     @Override
     public void getBusSearch() {
-        mBusSearchPresenter.searchBus("2");
+        mBusSearchPresenter.searchBus("6");
     }
 
 
     @Override
-    public void onBusClicked(String busId) {
+    public void onBusClicked(BusInformation busInformation) {
         //onBusClicked, pass busId to SeatSearch Activity
-        Toast.makeText(this, "Bus is selected" + busId, Toast.LENGTH_SHORT).show();
-        Log.e(TAG, "onBusClicked: " + busId );
+
+        Intent intent = new Intent(BusSearchActivity.this, SeatsAvailableActivity.class);
+        intent.putExtra("bus", busInformation);
+        startActivity(intent);
+        Toast.makeText(this, "Bus is selected" + busInformation.getBusId(), Toast.LENGTH_SHORT).show();
+        Log.e(TAG, "onBusClicked: " + busInformation.getBusId() + " fare is " + busInformation.getFare()  );
     }
 
     public void initToolBar(){

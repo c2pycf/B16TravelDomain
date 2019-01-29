@@ -4,6 +4,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/longroad"
     tools:context=".routeActivity.RouteActivity">
 
+    <TextView
+        android:id="@+id/tv_start_city"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+
+        android:layout_marginTop="195dp"
+        android:layout_marginEnd="103dp"
+        android:layout_marginBottom="81dp"
+        android:background="#ECD720"
+        android:text="TextView"
+        android:textColor="#070707"
+        app:layout_constraintBottom_toTopOf="@+id/tv_destination"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textviewrandom"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_destination"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+
+        android:layout_marginEnd="89dp"
+        android:layout_marginBottom="395dp"
+        android:background="#ECD720"
+        android:text="TextView"
+        android:textColor="#070707"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/tv_start_city" />
+
+    <TextView
+        android:id="@+id/textviewrandom"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="195dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginBottom="81dp"
+        android:background="#ECD720"
+        android:text="Start from"
+        android:textColor="#070707"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintEnd_toStartOf="@+id/tv_start_city"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="61dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="155dp"
+        android:background="#ECD720"
+        android:text="Destination"
+        android:textColor="#070707"
+        app:layout_constraintBottom_toTopOf="@+id/btn_bussearch"
+        app:layout_constraintEnd_toStartOf="@+id/tv_destination"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textviewrandom" />
+
+    <Button
+        android:id="@+id/btn_bussearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="127dp"
+        android:layout_marginBottom="192dp"
+        android:text="Search Buses"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 </android.support.constraint.ConstraintLayout>

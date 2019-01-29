@@ -99,4 +99,10 @@ public class PassengerInformationActivity extends AppCompatActivity implements P
         intent.putExtra(TICKET_INFORMATION_TAG,mTicketInformation);
         startActivity(intent);
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return false;
+    }
 }

@@ -46,7 +46,9 @@
             app:layout_constraintTop_toBottomOf="@id/tv_passenger_detail_title"
             app:layout_constraintLeft_toRightOf="@id/et_passenger_name"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:inputType="number"
+            android:maxLength="3"/>
 
         <RadioGroup
             android:layout_width="wrap_content"

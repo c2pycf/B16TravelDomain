@@ -24,8 +24,7 @@ public class BusInformation implements Serializable {
    @SerializedName("journyduration")
     String journeyDuration;
 
-    @SerializedName("Fare")
-
+    @SerializedName("fare")
     String fare;
 
     @SerializedName("boardingtime")

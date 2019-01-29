@@ -33,12 +33,9 @@ public interface GetDataService {
 
     //response for api 7 (seat search by bus id)
     @GET("seatinfo.php?")
-    Call<Seats> getSeats(@Query("busid") String busid);
-
-    //reserve the seat
+    Call<Seats> getBusSeats(@Query("busid") String busid);//reserve the seat
     @GET
     Call<ApiResponseMsg> reserveSeats(@Url String url);
-
 
 
 

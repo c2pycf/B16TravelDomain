@@ -1,8 +1,10 @@
 package com.example.fang.b16traveldomain.seatsavailable;
 
+import android.content.Intent;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
+import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
 import com.example.fang.b16traveldomain.model.dataresource.seatinformation.Seats;
 import com.example.fang.b16traveldomain.network.GetDataService;
 import com.example.fang.b16traveldomain.network.RetrofitClientInstance;
@@ -27,15 +29,17 @@ public class SeatsAvailablePresenter implements SeatsAvailableContract.SeatsAvai
     }
 
     @Override
-    public void findSeats(String busId) {
-        busId = "103";
-        Call<Seats> call = getDataService.getSeats(busId);
+    public void findSeats(final BusInformation busInformation) {
+        String busId = busInformation.getBusId();
+
+        Call<Seats> call = getDataService.getBusSeats(busId);
         call.enqueue(new Callback<Seats>() {
             @Override
             public void onResponse(Call<Seats> call, Response<Seats> response) {
                 if(response.body() != null){
                     Seats seats = response.body();
                     Log.e(TAG, "onResponse: " + seats.getSeats().get(0).getTotalSeat());
+                    view.showSeatAvailableActivity(seats, busInformation);
                 } else
                     Log.e(TAG, "onResponse: "+ response.body() );
 

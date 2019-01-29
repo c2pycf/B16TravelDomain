@@ -1,4 +1,4 @@
-package com.example.fang.b16traveldomain.homePage;
+package com.example.fang.b16traveldomain.HomePage;
 
 import java.util.List;
 
@@ -9,5 +9,5 @@ public interface Api {
 
 
     @POST("city.php?")
-    Call<CityModelList> getCity();
+    Call<cityModelList> getCity();
 }
