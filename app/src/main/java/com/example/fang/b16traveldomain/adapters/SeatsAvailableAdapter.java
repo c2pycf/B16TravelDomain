@@ -20,6 +20,8 @@ import com.example.fang.b16traveldomain.R;
 import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
 import com.example.fang.b16traveldomain.model.dataresource.seatinformation.Seat;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,8 @@ public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAd
     static List<String> seatsReserved;
     BusInformation busInformation;
     List<Double> total;
+    ToggleButton[] toggleButtons;
+    int index;
 
     private static final String TAG_SEATS = SeatsAvailableAdapter.class.getSimpleName();
 
@@ -41,6 +45,7 @@ public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAd
         this.busInformation = busInformation;
         this.seatsReserved = new ArrayList<>();
         this.total = new ArrayList<>();
+        this.toggleButtons= new ToggleButton[10];
     }
 
     @NonNull
@@ -54,21 +59,49 @@ public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAd
     public void onBindViewHolder(@NonNull final SeatViewHolder seatViewHolder, int i) {
 
         //create method that call each seat method dynamically
-       /* Object seat = seatList.get(0);
+        Object seat = seatList.get(0);
         Method[] methods = seat.getClass().getMethods();
 
-        for( int index =0; index < methods.length; index++){
 
-            if( methods[index].getName().contains( "getSeat")){
+       /* for(index =0; index < methods.length && toggleButtons.length > 0; index++) {
+
+            if (methods[index].getName().contains("getSeat") ) {
                 // Do something here
                 Log.e(TAG, "onBindViewHolder: " + methods[index].getName());
 
-                Object o = methods[index].invoke(seat);
-               *//* if(methods[index].invoke(seat) == null){
+                try {
+                    Object o = methods[index].invoke(seat);
+                    Log.e(TAG, "onBindViewHolder: " + o.toString() );
+                   if(o.toString().equals("1")) {
+                       toggleButtons[index-1].setBackgroundResource(R.drawable.seat_reserved );
+                       Log.e(TAG, "onBindViewHolder: ------------1 "+ toggleButtons[index-1] );
 
-                }*//*
-         */
+                   } else if(o.toString().equals("0")) {
+                       toggleButtons[index-1].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                           @Override
+                           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                               if(isChecked){
+                                   toggleButtons[index-1].setBackgroundResource(R.drawable.toggle_seat);
+                               } else if(!isChecked){
+                                   toggleButtons[index-1].setBackgroundResource(R.drawable.toggle_seat);
+                               }
+                           }
+                       });
 
+                       toggleButtons[index-1].setBackgroundResource(R.drawable.toggle_seat);
+                       Log.e(TAG, "onBindViewHolder: ------------0 "+ toggleButtons[index-1].getText() );
+                   }
+
+
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            }
+        }*/
+
+/*
         //fare = Double.parseDouble(busInformation.getFare());
         Log.e(TAG, "onBindViewHolder: " + busInformation.getBusId() + " fare is " + busInformation.getFare());
 
@@ -104,7 +137,7 @@ public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAd
 
 
         //seat1
-        if (seat1.equals("1")) {
+        if (seat1.equals("1")) {  //if(o.equals(")
             seatViewHolder.tb0.setBackgroundResource(R.drawable.seat_reserved);
         } else if (seat1.equals("0")) {
             seatViewHolder.tb0.setBackgroundResource(R.drawable.toggle_seat);
@@ -386,7 +419,7 @@ public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAd
                 //intent.
                //intent.putExtra("bus",busInformation);
             }
-        });
+        });*/
 
     }//bindholder
 
@@ -404,6 +437,7 @@ public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAd
 
         public SeatViewHolder(@NonNull View itemView) {
             super(itemView);
+            //use butter knife
             tb0 = itemView.findViewById(R.id.tb_seat_0);
             tb1 = itemView.findViewById(R.id.tb_seat_1);
             tb2 = itemView.findViewById(R.id.tb_seat_2);
@@ -419,12 +453,14 @@ public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAd
             imageButton = itemView.findViewById(R.id.buttonNext);
 
 
-          /* for(int i=0 ; i < 10 ; i++){
+            for (int i = 0; i < toggleButtons.length; i++) {
                 String tbID = "tb_seat_" + i;
-                int resID = itemView.getResources().getIdentifier(tbID,"id", context.getPackageName());
+                int resID = itemView.getResources().getIdentifier(tbID, "id", context.getPackageName());
                 toggleButtons[i] = itemView.findViewById(resID);
-               Log.e(TAG, "SeatViewHolder: "+ toggleButtons[i].toString() );
-            }*/
+                Log.e(TAG, "SeatViewHolder: toggles " + tbID + " size " + toggleButtons.length);
+                Log.e(TAG, "SeatViewHolder: toggles resID :  " + resID  );
+
+            }
         }
     }
 
