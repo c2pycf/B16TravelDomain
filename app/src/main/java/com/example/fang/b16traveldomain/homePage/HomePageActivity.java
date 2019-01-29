@@ -13,10 +13,7 @@ public class HomePageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        HomePageFragment homePageFragment = new HomePageFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.Frame_layout_Home, homePageFragment);
-        transaction.commit();
+
 
 
 

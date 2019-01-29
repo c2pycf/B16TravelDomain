@@ -3,58 +3,76 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/longroad"
+
     android:layout_height="match_parent">
 
     <Spinner
         android:id="@+id/spinner_start_city"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="92dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginBottom="168dp"
         android:autofillHints="Select Start City"
-        android:background="#f5e673"
-        app:layout_constraintBottom_toTopOf="@+id/spinner_destination_city"
+        android:background="#ECD614"
+        app:layout_constraintBottom_toTopOf="@+id/btn_journey_date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinner_destination_city"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="183dp"
+        android:layout_marginBottom="85dp"
         android:autofillHints="Select Destination City"
-        android:background="#f5e673"
-        app:layout_constraintBottom_toTopOf="@+id/et_date_home"
+        android:background="#ECD614"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_date_of_journey_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_start_city" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/et_date_home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:ems="10"
-
-        android:inputType="date"
-        app:layout_constraintBottom_toTopOf="@+id/btn_search_home"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_destination_city" />
 
     <Button
         android:id="@+id/btn_search_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="53dp"
+        android:layout_marginStart="104dp"
         android:layout_marginBottom="196dp"
-        android:text="Button"
+        android:text="Search"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/et_date_home"
-        app:layout_constraintTop_toBottomOf="@+id/et_date_home" />
+        app:layout_constraintStart_toStartOf="@+id/tv_date_of_journey_home"
+        app:layout_constraintTop_toBottomOf="@+id/tv_date_of_journey_home"
+        app:layout_constraintVertical_bias="0.49" />
+
+    <Button
+        android:id="@+id/btn_journey_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="393dp"
+        android:text="Date"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_date_of_journey_home"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_start_city" />
+
+    <TextView
+        android:id="@+id/tv_date_of_journey_home"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="403dp"
+        android:background="#ECD614"
+        android:text="Date of Journey"
+        android:textColor="#070707"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_journey_date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_destination_city" />
 </android.support.constraint.ConstraintLayout>
