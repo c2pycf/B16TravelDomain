@@ -135,11 +135,11 @@ public class OrderConfirmedActivity extends AppCompatActivity implements OrderCo
         Log.i(TAG, "setUpViews");
         Log.i(TAG, "Setting up date card");
         String date = ticketInformation.getJournydate();
-//        String dates[] = date.split("/s");
-//        tvWeekDateCard.setText(dates[0]);
-//        tvDateDateCard.setText(dates[1]);
-//        tvMonthDateCard.setText(dates[2]);
-//        Log.d(TAG,"Journy date" + dates[0]+" "+dates[1]+" "+dates[2]+" ");
+        String dates[] = date.split(" ");
+        tvMonthDateCard.setText(dates[0]);
+        tvDateDateCard.setText(dates[1]);
+        tvWeekDateCard.setText(dates[2]);
+        Log.d(TAG,"Journy date" + dates[0]+" "+dates[1]+" "+dates[2]+" ");
         tvDepDateCard.setText(ticketInformation.getBoardingtime());
         tvArrDateCard.setText(ticketInformation.getDroppingtime());
         tvDurationDateCard.setText(ticketInformation.getDuration());
@@ -212,6 +212,8 @@ public class OrderConfirmedActivity extends AppCompatActivity implements OrderCo
         msg = msg.concat("Your ticket reservation is just confirmed at ");
         msg = msg.concat(orderTime.getText().toString());
         msg = msg.concat("\nPlease check your ticket information below: \n");
+        msg = msg.concat("\nTrip date: \n");
+        msg = msg.concat(ticketInformation.getJournydate());
         msg = msg.concat("\nBus Id: ");
         msg = msg.concat(ticketInformation.getBusid());
         msg = msg.concat("\nBoarding time: ");

@@ -2,10 +2,7 @@ package com.example.fang.b16traveldomain.homePage;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,10 +11,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.fang.b16traveldomain.R;
+import com.example.fang.b16traveldomain.about.TechnologyListFragment;
 import com.example.fang.b16traveldomain.savereservation.SaveReservationFragment;
-import com.example.fang.b16traveldomain.singleSignOn.SingleSignOnActivity;
+import com.example.fang.b16traveldomain.singleSignOn.SingleSignOnFragment;
 
 public class HomePageActivitywithNavigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -97,22 +96,34 @@ public class HomePageActivitywithNavigation extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_sign_in) {
-            Intent intent = new Intent(HomePageActivitywithNavigation.this, SingleSignOnActivity.class);
-
-            startActivity(intent);
-        } else if (id == R.id.nav_book_route) {
-
-        } else if (id == R.id.nav_saved_reservation) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, new SaveReservationFragment())
+                    .replace(R.id.home_page_fragment_container, new SingleSignOnFragment())
                     .addToBackStack(null)
                     .commit();
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_book_route) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.home_page_fragment_container, new HomePageFragment())
+                    .addToBackStack(null)
+                    .commit();
 
-        } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_saved_reservation) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.home_page_fragment_container, new SaveReservationFragment())
+                    .addToBackStack(null)
+                    .commit();
+
+        } else if (id == R.id.nav_cancel) {
+            Toast.makeText(this, "Function haven't implemented", Toast.LENGTH_SHORT).show();
+
+        } else if (id == R.id.nav_tech) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.home_page_fragment_container, new TechnologyListFragment())
+                    .addToBackStack(null)
+                    .commit();
+
+        } else if (id == R.id.nav_about) {
 
         }
 

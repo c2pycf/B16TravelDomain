@@ -13,8 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
-
-import com.example.fang.b16traveldomain.MainActivity;
 import com.example.fang.b16traveldomain.R;
 import com.example.fang.b16traveldomain.adapters.BusSearchAdapter;
 import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
@@ -41,13 +39,14 @@ public class BusSearchActivity extends AppCompatActivity implements BusSearchCon
         setContentView(R.layout.activity_bus_search);
 
         ButterKnife.bind(this);
+        Intent intent = getIntent();
+        id = intent.getStringExtra("routeId");
         setupBusSearchMVP();  //bind presenter
         setupViews();   //setup linear layout to recycler view
         getBusSearch();   //
         initToolBar();
         //Intent from Route Activity
-        Intent intent = getIntent();
-        id = intent.getStringExtra("routeId");
+
 
     }
 
@@ -90,7 +89,7 @@ public class BusSearchActivity extends AppCompatActivity implements BusSearchCon
 
     @Override
     public void getBusSearch() {
-        mBusSearchPresenter.searchBus("6");
+        mBusSearchPresenter.searchBus(id);
     }
 
 
@@ -108,13 +107,9 @@ public class BusSearchActivity extends AppCompatActivity implements BusSearchCon
     public void initToolBar(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarBusSearch);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
-        toolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(BusSearchActivity.this, "Back", Toast.LENGTH_SHORT).show();
-            }
-        });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+
     }
 
     @Override
@@ -127,5 +122,11 @@ public class BusSearchActivity extends AppCompatActivity implements BusSearchCon
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return false;
     }
 }

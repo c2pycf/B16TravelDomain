@@ -27,7 +27,9 @@ public class SharedPreference implements LocalUserResource{
 
     @Override
     public void saveDate(String date) {
-
+        SharedPreferences.Editor editor = userPreference.edit();
+        editor.putString(JOURNEY_DATE,date);
+        editor.apply();
     }
 
     @Override

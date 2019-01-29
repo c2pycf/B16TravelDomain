@@ -17,6 +17,8 @@ public interface HomePageContract  {
         void displayMessege(String messege);
 
         void setRouteList(RouteList route_list);
+
+        void datePicked(String datePicked);
     }
 
     interface  HomeFragmentPresenter{
@@ -27,7 +29,13 @@ public interface HomePageContract  {
         void sendLatLong();
         void getCityList();
 
-        void getRoute(String start_Lattitude, String  start_Longitude, String  destination_Lattitude, String  destination_Longitude);
+        void getRoute(String start_Lattitude, String start_Longitude, String destination_Lattitude, String destination_Longitude);
+
+        void setUpDataPicker();
+
+        void initDate();
+
+        void saveDate(String journyDate);
     }
 
 

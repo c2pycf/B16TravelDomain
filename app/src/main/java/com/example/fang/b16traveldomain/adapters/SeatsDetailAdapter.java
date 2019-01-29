@@ -61,11 +61,11 @@ public class SeatsDetailAdapter extends RecyclerView.Adapter {
         switch (type) {
             case (0):
                 SeatsDetailDateViewHolder dateViewHolder = (SeatsDetailDateViewHolder) viewHolder;
-//                String date = ticketInformation.getJournydate();
-//                String dates[] = date.split("/s");
-//                dateViewHolder.tvWeekDateCard.setText(dates[0]);
-//                dateViewHolder.tvDateDateCard.setText(dates[1]);
-//                dateViewHolder.tvMonthDateCard.setText(dates[2]);
+                String date = ticketInformation.getJournydate();
+                String dates[] = date.split(" ");
+                dateViewHolder.tvMonthDateCard.setText(dates[0]);
+                dateViewHolder.tvDateDateCard.setText(dates[1]);
+                dateViewHolder.tvWeekDateCard.setText(dates[2]);
                 dateViewHolder.tvArrDateCard.setText(ticketInformation.getBoardingtime());
                 dateViewHolder.tvDepDateCard.setText(ticketInformation.getDroppingtime());
                 dateViewHolder.tvDurationDateCard.setText(ticketInformation.getDuration());
