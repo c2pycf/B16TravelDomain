@@ -1,5 +1,5 @@
 # B16TravelDomain
-TravelDomain(Temp) V1.0
+TravelDomain(Temp) V.Alpha
 ========
 
 TravelDomian is an application for user to book bus ticket for any provided cities and bus routes. User can book tickets by seclecting seets. 
