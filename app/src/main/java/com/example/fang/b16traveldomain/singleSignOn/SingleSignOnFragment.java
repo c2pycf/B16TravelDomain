@@ -49,6 +49,7 @@ public class SingleSignOnFragment extends Fragment {
 
         loginButton = view.findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList(EMAIL));
+        getActivity().setTitle("Log in.");
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override

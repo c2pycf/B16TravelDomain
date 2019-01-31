@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.fang.b16traveldomain.R;
+import com.example.fang.b16traveldomain.homePage.HomePageActivity;
 import com.example.fang.b16traveldomain.model.Passenger;
 import com.example.fang.b16traveldomain.model.TicketInformation;
 import com.example.fang.b16traveldomain.paymentgateway.PaymentActivity;
@@ -27,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class TicketDetailActivity extends AppCompatActivity implements TicketDetailContract.TicketDetailView {
+public class TicketDetailActivity extends AppCompatActivity implements TicketDetailContractKt.TicketDetailView {
     static private String TAG = TicketDetailActivity.class.getSimpleName();
     static private String TICKET_INFORMATION_TAG = "ticket_information";
     @BindView(R.id.ticket_detail_toolbar)
@@ -196,7 +197,16 @@ public class TicketDetailActivity extends AppCompatActivity implements TicketDet
 
     @Override
     public void showToast(String msg) {
-        Snackbar.make(btProceedForPayment, "" + msg, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(btProceedForPayment, "" + msg, Snackbar.LENGTH_LONG)
+                .setAction("View", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(TicketDetailActivity.this, HomePageActivity.class);
+                        //intent.putExtra(TICKET_INFORMATION_TAG, ticketInformation);
+                        startActivity(intent);
+                    }
+                })
+                .show();
     }
 
     @Override

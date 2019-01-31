@@ -12,7 +12,9 @@ import com.example.fang.b16traveldomain.model.Passenger;
 import com.example.fang.b16traveldomain.model.TicketInformation;
 
 
-
+/**
+ * Room database with two related tables
+ */
 @Database(entities = {TicketInformation.class, Passenger.class},version = 10)
 public abstract class TravelDatabase extends RoomDatabase {
     public abstract PassengerDAO passengerDAO();
@@ -31,6 +33,11 @@ public abstract class TravelDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
+    /**
+     * Populating the database when it is created, the random data will be put into database,
+     * will be erase with data input
+     */
 
     private static RoomDatabase.Callback sRoomDatabaseCallBack = new RoomDatabase.Callback(){
 

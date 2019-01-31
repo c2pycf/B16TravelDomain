@@ -20,9 +20,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class TicketDetailPresenter implements TicketDetailContract.TicketDetailPresenter {
+public class TicketDetailPresenter implements TicketDetailContractKt.TicketDetailPresenter {
 
-    private TicketDetailContract.TicketDetailView mView;
+    private TicketDetailContractKt.TicketDetailView mView;
     private Retrofit mRetrofit;
     private GetDataService mDataService;
     private TicketInformation mTicketInformation;

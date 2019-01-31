@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SavedReservationAdapter extends RecyclerView.Adapter {
-    List<TicketInformation> ticketInformations;
+    private List<TicketInformation> ticketInformations;
     private onItemClickedListener  mListener;
 
 

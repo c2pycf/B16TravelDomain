@@ -11,6 +11,10 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 
 import java.io.Serializable;
 
+/**
+ * Using foreignKey to relate two tables
+ */
+
 @Entity(foreignKeys = @ForeignKey(entity = TicketInformation.class,
         parentColumns = "order_time",
         childColumns = "porder_time",

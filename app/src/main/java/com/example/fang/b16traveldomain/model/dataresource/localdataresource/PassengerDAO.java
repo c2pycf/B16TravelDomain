@@ -9,6 +9,9 @@ import com.example.fang.b16traveldomain.model.Passenger;
 
 import java.util.List;
 
+/**
+ * Data Access Object for datasoure to interact with database
+ */
 @Dao
 public interface PassengerDAO {
     @Insert

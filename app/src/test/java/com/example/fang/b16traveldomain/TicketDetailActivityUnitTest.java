@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.example.fang.b16traveldomain.model.TicketInformation;
+import com.example.fang.b16traveldomain.model.dataresource.UserDataSource;
+import com.example.fang.b16traveldomain.model.dataresource.UserRepository;
 import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
 import com.example.fang.b16traveldomain.passengerinformation.PassengerInformationActivity;
 import com.example.fang.b16traveldomain.passengerinformation.PassengerInformationPresenter;
@@ -32,7 +34,7 @@ public class TicketDetailActivityUnitTest {
 
     @Mock
     PassengerInformationActivity mMockActivity;
-
+    UserRepository userRepository;
     @BeforeClass
     public static void initializeInputData(){
         seatsTest = new ArrayList<>();
@@ -48,6 +50,7 @@ public class TicketDetailActivityUnitTest {
         // Given a mocked Context injected into the object under test...
 //        when(mMockContext.getString(R.string.hello_world))
 //                .thenReturn(FAKE_STRING);
+
         PassengerInformationPresenter passengerInformationPresenter = new PassengerInformationPresenter(mMockActivity);
 
         // ...when the string is returned from the object under test...

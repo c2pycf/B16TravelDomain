@@ -30,8 +30,9 @@
     <string name="hint_billing_zip">Zip code</string>
     <string name="bt_billing_check_out">Check out</string>
 
-    <string name="facebook_app_id">443261006447423</string>
-    <string name="fb_login_protocol_scheme">fb443261006447423</string>
+    <string name="facebook_app_id">283213362307730</string>
+    <string name="fb_login_protocol_scheme">fb283213362307730</string>
+
 
     <string name="order_payment_status">Payment:</string>
     <string name="order_payment_status_tv">Paid</string>
@@ -71,6 +72,8 @@
         <item>Design Patterns</item>
         <item>Retrofit v2.4.0</item>
         <item>Recyclerview v7:28</item>
+        <item>MVP</item>
+        <item>MVVM</item>
         <item>ViewHolder</item>
         <item>Vysor</item>
         <item>Postman</item>
