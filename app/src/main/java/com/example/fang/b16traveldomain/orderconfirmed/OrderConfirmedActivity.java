@@ -11,7 +11,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fang.b16traveldomain.MainActivity;
 import com.example.fang.b16traveldomain.R;
+import com.example.fang.b16traveldomain.homePage.HomePageActivitywithNavigation;
 import com.example.fang.b16traveldomain.model.TicketInformation;
 
 import java.text.NumberFormat;
@@ -28,7 +30,7 @@ import butterknife.OnClick;
  */
 public class OrderConfirmedActivity extends AppCompatActivity implements OrderConfirmedContract.OrderConfirmedView {
 
-    @BindView(R.id.ticket_detail_toolbar)
+    @BindView(R.id.order_confirm_toolbar)
     Toolbar ticketDetailToolbar;
     @BindView(R.id.tv_date_date_card)
     TextView tvDateDateCard;
@@ -106,11 +108,22 @@ public class OrderConfirmedActivity extends AppCompatActivity implements OrderCo
         sentEmail();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //sentEmail();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+    }
+
     /**
      * The method set up order date
      */
     private void setUpTime() {
-        Log.i(TAG,"Setting up order time");
+        Log.i(TAG, "Setting up order time");
         Date currentTime = Calendar.getInstance().getTime();
         orderTime.setText(currentTime.toString());
     }
@@ -119,20 +132,20 @@ public class OrderConfirmedActivity extends AppCompatActivity implements OrderCo
      * Setting up the all the text on the UI using ticketInformation data model
      */
     private void setUpViews() {
-        Log.i(TAG,"setUpViews");
-        Log.i(TAG,"Setting up date card");
+        Log.i(TAG, "setUpViews");
+        Log.i(TAG, "Setting up date card");
         String date = ticketInformation.getJournydate();
-        String dates[] = date.split("/s");
-        tvWeekDateCard.setText(dates[0]);
-        tvDateDateCard.setText(dates[1]);
-        tvMonthDateCard.setText(dates[2]);
-        Log.d(TAG,"Journy date" + dates[0]+" "+dates[1]+" "+dates[2]+" ");
+//        String dates[] = date.split("/s");
+//        tvWeekDateCard.setText(dates[0]);
+//        tvDateDateCard.setText(dates[1]);
+//        tvMonthDateCard.setText(dates[2]);
+//        Log.d(TAG,"Journy date" + dates[0]+" "+dates[1]+" "+dates[2]+" ");
         tvDepDateCard.setText(ticketInformation.getBoardingtime());
         tvArrDateCard.setText(ticketInformation.getDroppingtime());
         tvDurationDateCard.setText(ticketInformation.getDuration());
 
         //Fare UI date
-        Log.i(TAG,"Setting up fare card");
+        Log.i(TAG, "Setting up fare card");
         tvBaseFare.setText(format.format(Double.parseDouble(ticketInformation.getFare())));
         double appDiscount = 0.05;
         double tax = 0.08;
@@ -144,14 +157,14 @@ public class OrderConfirmedActivity extends AppCompatActivity implements OrderCo
         String totalFare = format.format(fareDouble * (1 + tax - appDiscount));
         ticketInformation.setFare(totalFare);
         tvTotal.setText(totalFare);
-        Log.d(TAG,"Fare : " + tvBaseFare.getText() + "App discount:  "+ tvAppDiscount.getText() + "Tax : " + tvServiceTax.getText() + "Total Fare : " + tvTotal.getText());
+        Log.d(TAG, "Fare : " + tvBaseFare.getText() + "App discount:  " + tvAppDiscount.getText() + "Tax : " + tvServiceTax.getText() + "Total Fare : " + tvTotal.getText());
     }
 
     /**
      * Get intent with ticket information from previous activity
      */
     private void getTicketInformation() {
-        Log.i(TAG,"Get ticket information..");
+        Log.i(TAG, "Get ticket information..");
         Intent intent = getIntent();
         ticketInformation = (TicketInformation) intent.getSerializableExtra(TICKET_INFORMATION_TAG);
     }
@@ -163,7 +176,8 @@ public class OrderConfirmedActivity extends AppCompatActivity implements OrderCo
 
     @Override
     public void showHomePage() {
-
+        Intent intent = new Intent(OrderConfirmedActivity.this, HomePageActivitywithNavigation.class);
+        startActivity(intent);
     }
 
     @Override
@@ -180,11 +194,11 @@ public class OrderConfirmedActivity extends AppCompatActivity implements OrderCo
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your ticket information");
 
         String emailBody = convertTicketInformation();
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, emailBody);
 
         try {
             startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            finish();
+            //finish();
             Log.i(TAG, "Finished sending email...");
         } catch (android.content.ActivityNotFoundException ex) {
             Snackbar.make(toolbar, "There is no email client installed.", Toast.LENGTH_SHORT).show();
@@ -192,7 +206,7 @@ public class OrderConfirmedActivity extends AppCompatActivity implements OrderCo
     }
 
     private String convertTicketInformation() {
-        String msg ="";
+        String msg = "";
 
         msg = msg.concat("Dear Customer: \n");
         msg = msg.concat("Your ticket reservation is just confirmed at ");
@@ -208,7 +222,7 @@ public class OrderConfirmedActivity extends AppCompatActivity implements OrderCo
         msg = msg.concat(ticketInformation.getDuration());
         msg = msg.concat("\nWith total passenger(s):  ");
         msg = msg = msg.concat(Integer.toString(ticketInformation.getPassangerSize()));
-        for(int i=0;i<ticketInformation.getPassangerSize();i++){
+        for (int i = 0; i < ticketInformation.getPassangerSize(); i++) {
             msg = msg.concat("\nPassenger name: ");
             msg = msg.concat(ticketInformation.getPassanger(i).getPassengername());
         }
@@ -217,8 +231,10 @@ public class OrderConfirmedActivity extends AppCompatActivity implements OrderCo
     }
 
     @Override
-    public boolean onNavigateUp() {
-        return true;
-
+    public boolean onSupportNavigateUp() {
+        //change mainactivity to nav one after merge
+        Intent intent = new Intent(OrderConfirmedActivity.this, HomePageActivitywithNavigation.class);
+        startActivity(intent);
+        return false;
     }
 }
