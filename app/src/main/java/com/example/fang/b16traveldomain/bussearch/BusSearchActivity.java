@@ -20,6 +20,7 @@ import com.example.fang.b16traveldomain.adapters.BusSearchAdapter;
 import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
 import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformationResponse;
 import com.example.fang.b16traveldomain.seatsavailable.SeatsAvailableActivity;
+import com.example.fang.b16traveldomain.tags.Constants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,7 +73,7 @@ public class BusSearchActivity extends AppCompatActivity implements BusSearchCon
 
             mRecyclerView.setAdapter(busSearchAdapter);
         } else {
-            Log.d(TAG, "showBusSearchActivity: " + "response is null");
+            Log.d(TAG, Constants.SHOW_BUS_SEARCH + "response is null");
             //move all hardcorded strings to strings.xml or constant file
         }
     }

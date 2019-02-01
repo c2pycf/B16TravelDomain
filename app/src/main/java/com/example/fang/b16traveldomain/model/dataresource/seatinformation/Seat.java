@@ -2,11 +2,9 @@ package com.example.fang.b16traveldomain.model.dataresource.seatinformation;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.lang.reflect.Method;
-
 public class Seat {
     @SerializedName("id")
-    String seatId;
+    String id;
 
     @SerializedName("totalseat")
     String totalSeat;
@@ -41,10 +39,10 @@ public class Seat {
     @SerializedName("s10")
     String seat10;
 
-    public Seat(String seatId, String totalSeat, String seat1, String seat2, String seat3,
+    public Seat(String id, String totalSeat, String seat1, String seat2, String seat3,
                 String seat4, String seat5, String seat6, String seat7, String seat8,
                 String seat9, String seat10) {
-        this.seatId = seatId;
+        this.id = id;
         this.totalSeat = totalSeat;
         this.seat1 = seat1;
         this.seat2 = seat2;
@@ -61,12 +59,12 @@ public class Seat {
     public Seat() {
     }
 
-    public String getSeatId() {
-        return seatId;
+    public String getId() {
+        return id;
     }
 
-    public void setSeatId(String seatId) {
-        this.seatId = seatId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTotalSeat() {

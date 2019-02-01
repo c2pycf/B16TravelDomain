@@ -14,18 +14,15 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-
-import com.example.fang.b16traveldomain.MainActivity;
 import com.example.fang.b16traveldomain.R;
 import com.example.fang.b16traveldomain.model.dataresource.busInformation.BusInformation;
 import com.example.fang.b16traveldomain.model.dataresource.seatinformation.Seat;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
-
-import static android.support.constraint.Constraints.TAG;
 
 public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAdapter.SeatViewHolder>  {
 
@@ -53,380 +50,6 @@ public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAd
     public SeatViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_seat_card, viewGroup, false);
         return new SeatViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull final SeatViewHolder seatViewHolder, int i) {
-
-        //create method that call each seat method dynamically
-        Object seat = seatList.get(0);
-        Method[] methods = seat.getClass().getMethods();
-
-
-       /* for(index =0; index < methods.length && toggleButtons.length > 0; index++) {
-
-            if (methods[index].getName().contains("getSeat") ) {
-                // Do something here
-                Log.e(TAG, "onBindViewHolder: " + methods[index].getName());
-
-                try {
-                    Object o = methods[index].invoke(seat);
-                    Log.e(TAG, "onBindViewHolder: " + o.toString() );
-                   if(o.toString().equals("1")) {
-                       toggleButtons[index-1].setBackgroundResource(R.drawable.seat_reserved );
-                       Log.e(TAG, "onBindViewHolder: ------------1 "+ toggleButtons[index-1] );
-
-                   } else if(o.toString().equals("0")) {
-                       toggleButtons[index-1].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                           @Override
-                           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                               if(isChecked){
-                                   toggleButtons[index-1].setBackgroundResource(R.drawable.toggle_seat);
-                               } else if(!isChecked){
-                                   toggleButtons[index-1].setBackgroundResource(R.drawable.toggle_seat);
-                               }
-                           }
-                       });
-
-                       toggleButtons[index-1].setBackgroundResource(R.drawable.toggle_seat);
-                       Log.e(TAG, "onBindViewHolder: ------------0 "+ toggleButtons[index-1].getText() );
-                   }
-
-
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-            }
-        }*/
-
-/*
-        //fare = Double.parseDouble(busInformation.getFare());
-        Log.e(TAG, "onBindViewHolder: " + busInformation.getBusId() + " fare is " + busInformation.getFare());
-
-        final String seat1 = seatList.get(i).getSeat1();
-        final String seat_no1 = seatViewHolder.tb0.getText().toString();
-
-        final String seat2 = seatList.get(i).getSeat2();
-        final String seat_no2 = seatViewHolder.tb1.getText().toString();
-
-        final String seat3 = seatList.get(i).getSeat3();
-        final String seat_no3 = seatViewHolder.tb2.getText().toString();
-
-        final String seat4 = seatList.get(i).getSeat4();
-        final String seat_no4 = seatViewHolder.tb3.getText().toString();
-
-        final String seat5 = seatList.get(i).getSeat5();
-        final String seat_no5 = seatViewHolder.tb4.getText().toString();
-
-        final String seat6 = seatList.get(i).getSeat6();
-        final String seat_no6 = seatViewHolder.tb5.getText().toString();
-
-        final String seat7 = seatList.get(i).getSeat7();
-        final String seat_no7 = seatViewHolder.tb6.getText().toString();
-
-        final String seat8 = seatList.get(i).getSeat8();
-        final String seat_no8 = seatViewHolder.tb7.getText().toString();
-
-        final String seat9 = seatList.get(i).getSeat9();
-        final String seat_no9 = seatViewHolder.tb8.getText().toString();
-
-        final String seat10 = seatList.get(i).getSeat10();
-        final String seat_no10 = seatViewHolder.tb9.getText().toString();
-
-
-        //seat1
-        if (seat1.equals("1")) {  //if(o.equals(")
-            seatViewHolder.tb0.setBackgroundResource(R.drawable.seat_reserved);
-        } else if (seat1.equals("0")) {
-            seatViewHolder.tb0.setBackgroundResource(R.drawable.toggle_seat);
-            seatViewHolder.tb0.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: True");
-                        //add fare
-                        double d = addFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(d));
-                        seatViewHolder.tvSeats.setText(reserveSeat(seat_no1));
-                    } else if (!isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: False ");
-                        //remove fare amount
-                        double d = removeFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(d));
-                        seatViewHolder.tvSeats.setText(unreservedSeat(seat_no1));
-
-                    }
-                }
-            });
-        }
-
-
-        //seat2
-        if (seat2.equals("1")) {
-            seatViewHolder.tb1.setBackgroundResource(R.drawable.seat_reserved);
-        } else if (seat2.equals("0")) {
-            seatViewHolder.tb1.setBackgroundResource(R.drawable.toggle_seat);
-            seatViewHolder.tb1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: True");
-                        //add fare
-                        double d = addFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(d));
-                        seatViewHolder.tvSeats.setText(reserveSeat(seat_no2));
-
-                    } else if (!isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: False ");
-                        //remove fare amount
-                        double d = removeFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(d));
-                        seatViewHolder.tvSeats.setText(unreservedSeat(seat_no2));
-
-                    }
-                }
-            });
-        }
-
-        //seat3
-        if (seat3.equals("1")) {
-            seatViewHolder.tb2.setBackgroundResource(R.drawable.seat_reserved);
-        } else if (seat3.equals("0")) {
-            seatViewHolder.tb2.setBackgroundResource(R.drawable.toggle_seat);
-            seatViewHolder.tb2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: True");
-                        //add fare
-                        double d = addFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(d));
-                        seatViewHolder.tvSeats.setText(reserveSeat(seat_no3));
-                    } else if (!isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: False ");
-                        //remove fare amount
-                        double d = removeFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(d));
-                        seatViewHolder.tvSeats.setText(unreservedSeat(seat_no3));
-
-                    }
-                }
-            });
-        }
-
-        //seat 4
-        if (seat4.equals("1")) {
-            seatViewHolder.tb3.setBackgroundResource(R.drawable.seat_reserved);
-        } else if (seat4.equals("0")) {
-            seatViewHolder.tb3.setBackgroundResource(R.drawable.toggle_seat);
-            seatViewHolder.tb3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: True");
-                        //add fare
-                        double f = addFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(f));
-
-                        seatViewHolder.tvSeats.setText(reserveSeat(seat_no4));
-                    } else if (!isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: False ");
-                        //remove fare amount
-                        double r = removeFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(r));
-                        seatViewHolder.tvSeats.setText(unreservedSeat(seat_no4));
-                    }
-                }
-            });
-        }
-
-        //seat5
-        if (seat5.equals("1")) {
-            seatViewHolder.tb4.setBackgroundResource(R.drawable.seat_reserved);
-        } else if (seat5.equals("0")) {
-            seatViewHolder.tb4.setBackgroundResource(R.drawable.toggle_seat);
-            seatViewHolder.tb4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: True");
-                        //add fare
-                        double d = addFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(d));
-                        seatViewHolder.tvSeats.setText(unreservedSeat(seat_no5));
-                    } else if (!isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: False ");
-
-                        //remove fare amount
-                        double d = removeFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvSeats.setText(unreservedSeat(seat_no5));
-
-                    }
-                }
-            });
-        }
-
-        //seat6
-        if (seat6.equals("1")) {
-            seatViewHolder.tb5.setBackgroundResource(R.drawable.seat_reserved);
-        } else if (seat6.equals("0")) {
-            seatViewHolder.tb5.setBackgroundResource(R.drawable.toggle_seat);
-            seatViewHolder.tb5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: True");
-                        //add fare
-                        double d = addFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(d));
-
-                        //add seat
-                        seatViewHolder.tvSeats.setText(reserveSeat(seat_no6));
-                    } else if (!isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: False ");
-
-                        //remove fare amount
-                        double d = removeFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(d));
-                        //remove seat
-                        seatViewHolder.tvSeats.setText(unreservedSeat(seat_no6));
-
-                    }
-                }
-            });
-        }
-
-        //seat7
-        if (seat7.equals("1")) {
-            seatViewHolder.tb6.setBackgroundResource(R.drawable.seat_reserved);
-        } else if (seat7.equals("0")) {
-            seatViewHolder.tb6.setBackgroundResource(R.drawable.toggle_seat);
-            seatViewHolder.tb6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: True");
-                        //add fare
-                        double d = addFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(d));
-
-                        //add seat
-                        seatViewHolder.tvSeats.setText(reserveSeat(seat_no7));
-                    } else if (!isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: False ");
-
-                        //remove fare amount
-                        double d = removeFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(d));
-                        //remove seat
-                        seatViewHolder.tvSeats.setText(unreservedSeat(seat_no7));
-                    }
-                }
-            });
-        }
-        //seat8
-        if (seat8.equals("1")) {
-            seatViewHolder.tb7.setBackgroundResource(R.drawable.seat_reserved);
-        } else if (seat8.equals("0")) {
-            seatViewHolder.tb7.setBackgroundResource(R.drawable.toggle_seat);
-            seatViewHolder.tb7.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: True");
-                        //add fare
-                        double d = addFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(d));
-
-                        //add seat
-                        seatViewHolder.tvSeats.setText(reserveSeat(seat_no8));
-                    } else if (!isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: False ");
-
-                        //remove fare amount
-                        double d = removeFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(d));
-                        //remove seat
-                        seatViewHolder.tvSeats.setText(unreservedSeat(seat_no8));
-                    }
-                }
-            });
-        }
-        //seat9
-        if (seat9.equals("1")) {
-            seatViewHolder.tb8.setBackgroundResource(R.drawable.seat_reserved);
-        } else if (seat9.equals("0")) {
-            seatViewHolder.tb8.setBackgroundResource(R.drawable.toggle_seat);
-            seatViewHolder.tb8.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: True");
-                        //add fare
-                        double d = addFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(d));
-
-                        //reserved selected seat and show seats selected
-                        seatViewHolder.tvSeats.setText(reserveSeat(seat_no9));
-                    } else if (!isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: False ");
-
-                        //remove fare amount
-                        double r = removeFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(r));
-                        seatViewHolder.tvSeats.setText(unreservedSeat(seat_no9));
-                    }
-                }
-            });
-        }
-        //seat10
-
-        if (seat10.equals("1")) {
-            seatViewHolder.tb9.setBackgroundResource(R.drawable.seat_reserved);
-        } else if (seat10.equals("0")) {
-            seatViewHolder.tb9.setBackgroundResource(R.drawable.toggle_seat);
-            seatViewHolder.tb9.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: True");
-                        //add fare
-                        double d = addFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(d));
-
-                        //reserved selected seat and show seats selected
-                        seatViewHolder.tvSeats.setText(reserveSeat(seat_no10));
-                    } else if (!isChecked) {
-                        Log.e(TAG_SEATS, "onCheckedChanged: False ");
-
-                        //remove fare amount
-                        double r = removeFare(Double.parseDouble(busInformation.getFare()));
-                        seatViewHolder.tvFare.setText(String.valueOf(r));
-                        //unreserved selected seat and show seats selected
-                        seatViewHolder.tvSeats.setText(unreservedSeat(seat_no10));
-                    }
-                }
-            });
-        }
-
-        seatViewHolder.imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               Intent intent;
-               intent = new Intent(); //context to next activity
-                //intent.
-               //intent.putExtra("bus",busInformation);
-            }
-        });*/
-
-    }//bindholder
-
-
-    @Override
-    public int getItemCount() {
-        return seatList.size();
     }
 
     public class SeatViewHolder extends RecyclerView.ViewHolder {
@@ -457,12 +80,94 @@ public class SeatsAvailableAdapter extends RecyclerView.Adapter<SeatsAvailableAd
                 String tbID = "tb_seat_" + i;
                 int resID = itemView.getResources().getIdentifier(tbID, "id", context.getPackageName());
                 toggleButtons[i] = itemView.findViewById(resID);
-                Log.e(TAG, "SeatViewHolder: toggles " + tbID + " size " + toggleButtons.length);
-                Log.e(TAG, "SeatViewHolder: toggles resID :  " + resID  );
+                // Log.e(TAG, "SeatViewHolder: toggles " + tbID + " size " + toggleButtons.length);
+                // Log.e(TAG, "SeatViewHolder: toggles resID :  " + resID  );
 
             }
         }
     }
+    @Override
+    public void onBindViewHolder(@NonNull final SeatViewHolder seatViewHolder, int i) {
+
+        //create method that call each seat method dynamically
+        Object seat = seatList.get(0);
+        Method[] methods = seat.getClass().getMethods();
+        final List<Method> seats = new ArrayList<>();
+
+        Arrays.sort(methods, new Comparator<Method>() {
+            @Override
+            public int compare(Method o1, Method o2) {
+                String s1= o1.getName();
+                String s2 = o2.getName();
+                return extractInt(s1) - extractInt(s2);
+            }
+            int extractInt (String s){
+                String num = s.replaceAll("\\D", "");
+                return num.isEmpty() ? 0 : Integer.parseInt(num);
+            }
+        });
+
+        for(index =0; index < methods.length  ; index++) {
+            if (methods[index].getName().contains("getSeat")) {
+               seats.add(methods[index]);
+            }
+        }
+
+        for (int j = 0; j < seats.size() ; j++) {
+           final String seat_no = String.valueOf(j + 1);
+           // Log.e(TAG, "onBindViewHolder: seat: at index " + j + " is " + seats.get(j).getName());
+            try {
+                Object o = seats.get(j).invoke(seat);
+               // Log.e(TAG, "onBindViewHolder: at index " + j +" o is " + o );
+                if (o.equals("0")){
+                  toggleButtons[j].setBackgroundResource(R.drawable.toggle_seat);
+                  toggleButtons[j].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                      @Override
+                      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                          if(isChecked){
+                              //add fare
+                              double d = addFare(Double.parseDouble(busInformation.getFare()));
+                              seatViewHolder.tvFare.setText(String.valueOf(d));
+                              //add seat
+                              seatViewHolder.tvSeats.setText(reserveSeat(seat_no));
+                          } else if(!isChecked){
+                              //remove fare amount
+                              double d = removeFare(Double.parseDouble(busInformation.getFare()));
+                              seatViewHolder.tvFare.setText(String.valueOf(d));
+                              //remove seat
+                              seatViewHolder.tvSeats.setText(unreservedSeat(seat_no));
+
+                          }
+                      }
+                  });
+                } else if (o.equals("1")){
+                  toggleButtons[j].setBackgroundResource(R.drawable.seat_reserved);
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+
+        seatViewHolder.imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent;
+               intent = new Intent(); //context to next activity
+                //intent.
+               //intent.putExtra("bus",busInformation);
+            }
+        });
+
+    }//bindholder
+
+
+    @Override
+    public int getItemCount() {
+        return seatList.size();
+    }
+
 
     public double addFare(double f) {
         double sum = 0;
